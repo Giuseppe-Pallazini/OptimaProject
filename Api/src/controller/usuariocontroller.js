@@ -37,7 +37,7 @@ server.post("/login", async (req, resp) => {
         }
         
         let token = await generateToken(resposta.id, resposta.nome);
-        resp.cookie('token', token, { httpOnly: true, maxAge: 120000 });
+        resp.cookie('token', token, { httpOnly: true });
 
         resp.send({
              id: resposta.id,

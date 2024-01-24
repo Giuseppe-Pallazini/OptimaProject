@@ -1,0 +1,138 @@
+body {
+    display: flex;
+    flex-direction: row;
+
+    background-color: #F5F6FA;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #111111;
+    color: white;
+
+    width: 216px;
+    height: 100vh;
+
+    .hamburguer {
+        border: none;
+        background: none;
+        border-top: 3px solid #F5F6FA;
+        cursor: pointer;
+    }
+
+    .hamburguer::before, .hamburguer::after {
+        content: " ";
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: #F5F6FA;
+        margin-top: 5px;
+    }
+
+    .logo_optima_white {
+        width: 170px;
+        height: auto;
+
+        margin: 5em 0 4em 0;
+    }
+
+    .home-purple {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #8837C7;
+        width: 100%;
+        color: #F5F6FA;
+        padding: 1em;
+        img {
+            width: 20px;
+            height: auto;
+        }
+
+        p {
+            font-family: 'inter', sans-serif;
+            font-size: 12px;
+        }
+    }
+
+    .home-black {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #111111;
+        width: 100%;
+        color: #F5F6FA;
+        padding: 1em;
+        
+        img {
+            width: 20px;
+            height: auto;
+        }
+
+        p {
+            text-align: center;
+            font-family: 'inter', sans-serif;
+            font-size: 12px;
+        }
+    }
+
+}
+
+    .section-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        
+        .logo-optima-black {
+            height: auto;
+            opacity: .1;
+        }
+
+    }
+
+@media (max-width: 1350px) {
+    .menu {
+        .logo_optima_white {
+            width: 150px;
+        }
+    }
+    .section-logo {
+        .logo-optima-black {
+            
+        }
+    }
+}
+
+@media (max-width: 1110px) {
+    .menu {
+        .logo_optima_white {
+            width: 130px;
+        }
+    }
+    .section-logo {
+        .logo-optima-black {
+            width: 200px;
+        }
+    }
+}
+
+@media (max-width: 545px) {
+    .menu {
+        .logo_optima_white {
+            width: 100px;
+        }
+    }
+}
+
+/* Removendo Menú lateral */
+@media (max-width: 425px) {
+    
+    .menu {
+        display: none;
+    }
+}

@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'inter', sans-serif;
+}
+
+a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: black;
+    margin: 3em 0 0 3em;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: car 8s infinite ease-in-out;
+
+    height: 100vh;
+
+    opacity: .3;
+}
+
+@keyframes car {
+    0% {
+        transform: translateX(0);
+    } 33% {
+        transform: translateX(-2em);
+    } 66% {
+        transform: translateX(2em);
+    } 100% {
+        transform: translateX(0);
+    }
+}

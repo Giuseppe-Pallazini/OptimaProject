@@ -8,3 +8,8 @@
     src: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 }
 
+
+a:active, a:link, a:visited {
+    text-decoration: none;
+    color: default;
+}

@@ -66,6 +66,6 @@ function redirect() {
     document.getElementById("buttonEnter").innerHTML = spinHtml;
 
     setTimeout(() => {
-        window.location.href = "http://localhost:5000/pageCarros";                        
+        window.location.href = "/home";                        
     }, 1000)
 }
