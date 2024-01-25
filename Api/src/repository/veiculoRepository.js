@@ -6,7 +6,7 @@ export async function inserirVeiculo(veiculo) {
         `INSERT INTO tb_veiculo (ds_modelo, ds_marca, vl_valor, ds_placa, dt_anofab, vl_km, ds_classe)
                                      VALUES (?, ?, ?, ?, ?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anofab, veiculo.km,veiculo.classe]);
+    const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anofab, veiculo.km, veiculo.classe]);
     veiculo.id = resposta.insertId;
     return veiculo;
 }
@@ -51,22 +51,22 @@ export async function listarTodosVeículos() {
 
 
 /*Buscar Veiculo*/
-export async function buscarPorNome(nome) {
+export async function buscarPorNome(nome, marca) {
     const comando =
-        `select 	id_veiculo      id,
-		            ds_modelo                nome,
-		            ds_marca                 marca,
-		            vl_valor                 valor,
-                    ds_placa 	 	        placa,
+        `select 	id_veiculo              id,
+                    ds_modelo               nome,
+                    ds_marca                marca,
+                    vl_valor                valor,
+                    ds_placa                placa,
                     dt_anofab               anofab,
-                    vl_km                   km,	
+                    vl_km                   km,
                     ds_classe               classe,
                     img_veiculo             imagem
        from tb_veiculo
-	            where ds_modelo    like ?
+	            where ds_modelo like ?
                   or ds_marca like ? `
 
-    const [linhas] = await con.query(comando, [`%${nome}%`, `%${nome}%`]);
+    const [linhas] = await con.query(comando, [`'%${nome}%'`, `'%${marca}%'`]);
     return linhas;
 }
 
@@ -87,7 +87,7 @@ export async function alterarVeiculo(id, veiculo) {
 
     where id_veiculo = ?`
 
-    const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anofab, veiculo.km, veiculo.classe, veiculo.id])
+    const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anofab, veiculo.km, veiculo.classe, id])
     return resposta.affectedRows;
 }
 
@@ -98,7 +98,7 @@ export async function removerVeiculo(id) {
         `delete from tb_veiculo
 	 where       id_veiculo = ? `
 
-    const [resposta] = await con.query(comando, [id])
+    const [resposta] = await con.query(comando, id)
     return resposta.affectedRows
 }
 
@@ -117,8 +117,49 @@ export async function BuscarPorID(id) {
                 img_veiculo             imagem
     FROM        tb_veiculo
     WHERE       id_veiculo     =         ? ` ;
-    const [linhas] = await con.query(comando, [id]);
-   return linhas[0];
+    const [linhas] = await con.query(comando, id);
+    return linhas[0];
 }
 
 
+
+export async function validateVehicle(novoVeiculo) {
+
+    if (!novoVeiculo.modelo) {
+        throw new Error("Modelo do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.marca) {
+        throw new Error("Marca do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.valor) {
+        throw new Error("Valor do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.placa) {
+        throw new Error("Placa do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.anofab) {
+        throw new Error("Ano de Fabricação do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.km) {
+        throw new Error("Quilometragem do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.classe) {
+        throw new Error("Classe do veiculo é obrigatorio!");
+    }
+
+    if (!novoVeiculo.modelo.trim())
+        throw new Error("Modelo do veiculo é obrigatorio!");
+    else if (!novoVeiculo.marca.trim())
+        throw new Error("Marca do veiculo é obrigatorio!");
+    else if (novoVeiculo.valor < 0 || undefined)
+        throw new Error("Valor do veiculo é obrigatorio!");
+    else if (!novoVeiculo.placa.trim())
+        throw new Error("Placa do veiculo é obrigatorio!");
+    else if (novoVeiculo.anofab < 0 || undefined)
+        throw new Error("Ano de Fabricação do veiculo é obrigatorio!");
+    else if (!novoVeiculo.km)
+        throw new Error("Quilometragem do veiculo é obrigatorio!");
+    else if (!novoVeiculo.classe.trim())
+        throw new Error("Classe do veiculo é obrigatorio!");
+
+}
