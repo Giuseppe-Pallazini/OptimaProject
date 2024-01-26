@@ -17,7 +17,8 @@ server.get('/', (req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../site/landingPage/landingPage.html'));
 })
 
-server.get('/home', verifyToken ,(req, resp) => {
+server.get('/home', verifyToken ,
+(req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../site/home/home.html'));
 })
 

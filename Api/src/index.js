@@ -17,5 +17,5 @@ server.use(usuariocontroller);
 server.use(veiculocontroller);
 server.use(pageController)
 
-server.listen(process.env.PORT, () =>
+server.listen(process.env.PORT, '0.0.0.0', () =>
         console.log(`API esta Online na Porta ${process.env.PORT}`));

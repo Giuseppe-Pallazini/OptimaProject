@@ -30,10 +30,8 @@ section {
 @keyframes car {
     0% {
         transform: translateX(0);
-    } 33% {
+    } 50% {
         transform: translateX(-2em);
-    } 66% {
-        transform: translateX(2em);
     } 100% {
         transform: translateX(0);
     }

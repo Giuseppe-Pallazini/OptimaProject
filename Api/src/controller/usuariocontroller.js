@@ -1,10 +1,9 @@
-import jwt from 'jsonwebtoken'
 import cookieParser from 'cookie-parser'
 import path from 'path';
 import express  from 'express';
 
 import { fileURLToPath } from 'url';
-import { generateToken, login, verifyToken } from "../repository/usuarioRepository.js";
+import { generateToken, login } from "../repository/usuarioRepository.js";
 
 
 import { Router } from "express";
@@ -16,8 +15,6 @@ const __dirname = path.dirname(__filename);
 
 server.use(cookieParser())
 server.use(express.static(path.join(__dirname, '../../../site')));
-
-const secretKey = process.env.SECRET_KEY
 
 
 // Rota para a página /login
@@ -37,7 +34,7 @@ server.post("/login", async (req, resp) => {
         }
         
         let token = await generateToken(resposta.id, resposta.nome);
-        resp.cookie('token', token, { httpOnly: true });
+        resp.cookie('token', token);
 
         resp.send({
              id: resposta.id,
