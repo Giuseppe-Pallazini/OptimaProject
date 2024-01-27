@@ -11,15 +11,36 @@ const server = Router()
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-server.use(express.static(path.join(__dirname, '../../../site/landingPage')));
+server.use(express.static(path.join(__dirname, '../../../site/pages')));
 
+// Landing Page
 server.get('/', (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/landingPage/landingPage.html'));
-})
+    resp.sendFile(path.join(__dirname, '../../../site/pages/landingPage/landingPage.html'));
+});
 
+
+// Home
 server.get('/home', verifyToken ,
 (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/home/home.html'));
-})
+    resp.sendFile(path.join(__dirname, '../../../site/pages/home/home.html'));
+});
+
+
+// PageCarros
+server.get('/pageCarros', verifyToken, (req, resp) => {
+    resp.sendFile(path.join(__dirname, '../../../site/pages/pageCarros/pageCarros.html'));
+});
+
+
+// Login
+server.get('/login', (req, resp) => {
+    resp.sendFile(path.join(__dirname, '../../../site/pages/login/login.html'));
+});
+
+
+// Clientes
+server.get('/clientes', (req, resp) => {
+    resp.sendFile(path.join(__dirname, '../../../site/pages/clientes/clientes.html'));
+});
 
 export default server;

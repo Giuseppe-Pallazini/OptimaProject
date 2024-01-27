@@ -17,11 +17,6 @@ server.use(cookieParser())
 server.use(express.static(path.join(__dirname, '../../../site')));
 
 
-// Rota para a página /login
-server.get('/login', (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/login/login.html'));
-});
-
 //! logar no sistema
 server.post("/login", async (req, resp) => {
     try {

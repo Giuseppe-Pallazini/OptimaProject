@@ -20,7 +20,7 @@ server.use(express.static(path.join(__dirname, '../../../site')));
 
 
 //Adicionar Veiculo
-server.post('/veiculo', async (req, resp) => {
+server.post('/veiculo', verifyToken, async (req, resp) => {
     try {
         const novoVeiculo = req.body;
 
@@ -61,13 +61,8 @@ server.put('/veiculo/:id/capa', upload.single('capa'), async (req, resp) => {
 })
 
 
-server.get('/pageCarros', verifyToken, (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/pageCarros/pageCarros.html'));
-});
-
-
 //Listar Veiculos
-server.get('/veiculo', async (req, resp) => {
+server.get('/veiculo', verifyToken, async (req, resp) => {
     try {
         const resposta = await listarTodosVeículos();
         resp.send(resposta);
@@ -81,7 +76,7 @@ server.get('/veiculo', async (req, resp) => {
 
 
 //Buscar por nome
-server.get('/veiculo/busca', async (req, resp) => {
+server.get('/veiculo/busca', verifyToken, async (req, resp) => {
     try {
         const { nome, marca } = req.body;
         const resposta = await buscarPorNome(nome, marca);
@@ -99,7 +94,7 @@ server.get('/veiculo/busca', async (req, resp) => {
 
 
 // alterar veiculo
-server.put('/veiculo/:id', async (req, resp) => {
+server.put('/veiculo/:id', verifyToken, async (req, resp) => {
     try {
         const { id } = req.params;
         const veiculo = req.body;
@@ -120,7 +115,7 @@ server.put('/veiculo/:id', async (req, resp) => {
 })
 
 //Deletar Veiculo
-server.delete('/veiculo/:id', async (req, resp) => {
+server.delete('/veiculo/:id', verifyToken, async (req, resp) => {
     try {
         const { id } = req.params;
 
@@ -137,17 +132,22 @@ server.delete('/veiculo/:id', async (req, resp) => {
 })
 
 //Buscar por ID
-server.get('/veiculo/:id', async (req, resp) => {
+server.get('/veiculo/:id', verifyToken, async (req, resp) => {
     try {
-        const lol = Number(req.params.id);
-        const resposta = await BuscarPorID(lol);
+        const id = Number(req.params.id);
+
+        if(!id) {
+            throw new Error("Número não identificado");
+        }
+        
+        const resposta = await BuscarPorID(id);
 
         if (!resposta) {
-            throw new Error('Veiculo não localizado.')
+            throw new Error("Veículo não localizado.");
         }
         resp.send(resposta);
     } catch (err) {
-        console.log(err)
+        resp.send({message: err.message})
     }
 })
 

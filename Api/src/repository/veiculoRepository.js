@@ -66,7 +66,7 @@ export async function buscarPorNome(nome, marca) {
 	            where ds_modelo like ?
                   or ds_marca like ? `
 
-    const [linhas] = await con.query(comando, [`'%${nome}%'`, `'%${marca}%'`]);
+    const [linhas] = await con.query(comando, [`%${nome}%`, `%${marca}%`]);
     return linhas;
 }
 
