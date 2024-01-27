@@ -20,7 +20,7 @@ server.get('/', (req, resp) => {
 
 
 // Home
-server.get('/home', verifyToken ,
+server.get('/home' ,
 (req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../site/pages/home/home.html'));
 });

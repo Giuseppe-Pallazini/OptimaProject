@@ -29,6 +29,8 @@ body {
     height: 3px;
     background: #F5F6FA;
     margin-top: 5px;
+    position: relative;
+    transition: .3s;
 }
 
 .menu {
@@ -49,11 +51,14 @@ body {
     }
 
     .nav-list {
-        list-style: none;
         margin: 0;
         padding: 0;
         width: 100%;
 
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
         .home-purple {
             display: flex;
@@ -71,7 +76,7 @@ body {
             }
 
             p {
-                font-family: 'inter', sans-serif;
+                font-family: 'inter', sans-se   f;
                 font-size: 12px;
                 margin: 0 1.1em 0 0;
             }
@@ -171,19 +176,55 @@ body {
         width: 100vw;
         height: 100vh;
         background: #111111;
-        clip-path: circle(100px at 0% -10%);
+        clip-path: circle(100px at 0% -14%);
         transition: 1s ease-in-out;
         z-index: 1;
 
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: flex-start;
         pointer-events: none;
+
+        ul {
+            margin-top: 10em;
+        }
+
+        a, div {
+            opacity: 0;
+        }
+        
+    }
+
+    .nav-list ul li:nth-child(1) div {
+        transition: .5s .6s;
+    }
+    .nav-list ul li:nth-child(2) a {
+        transition: .5s .8s;
+    }
+    .nav-list ul li:nth-child(3) a {
+        transition: .5s 1s;
     }
 
 
     .menu.active .nav-list {
         clip-path: circle(1500px at 10% 10%);
         pointer-events: all;
+    }
+
+    .menu.active .nav-list a, .menu.menu.active .nav-list div {
+        opacity: 1;
+    }
+
+    .menu.menu.active .hamburguer {
+        position: fixed;
+        border-top-color: transparent;
+    }
+
+    .menu.menu.active .hamburguer::before {
+        transform: rotate(135deg);
+    }
+    .menu.menu.active .hamburguer::after {
+        transform: rotate(-135deg);
+        top: -7px;
     }
 }

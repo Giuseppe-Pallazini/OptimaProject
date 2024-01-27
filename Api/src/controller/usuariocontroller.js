@@ -29,6 +29,11 @@ server.post("/login", async (req, resp) => {
         }
         
         let token = await generateToken(resposta.id, resposta.nome);
+
+        if(!token) {
+            throw new Error('Erro ao gerar token')
+        }
+        
         resp.cookie('token', token);
 
         resp.send({
@@ -43,5 +48,7 @@ server.post("/login", async (req, resp) => {
         });
     }
 })
+
+
 
 export default server;
