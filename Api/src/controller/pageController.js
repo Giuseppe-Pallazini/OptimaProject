@@ -20,10 +20,14 @@ server.get('/', (req, resp) => {
 
 
 // Home
-server.get('/home' ,
-(req, resp) => {
+server.get('/home' , (req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../site/pages/home/home.html'));
 });
+
+
+server.get('home/home.js', verifyToken, (req,resp) => {
+    resp.sendFile(path.join(__dirname, '../../../site/pages/login/login.html'));
+})
 
 
 // PageCarros
