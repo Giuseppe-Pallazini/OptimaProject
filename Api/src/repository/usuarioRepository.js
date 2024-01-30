@@ -22,6 +22,7 @@ export async function verifyToken(req, res, next) {
     const token = req.cookies.token;
 
     if (!token) {
+      console.log('Token n existe')
       return res.redirect('/login'); // Token não existe
     }
 

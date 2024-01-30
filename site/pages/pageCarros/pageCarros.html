@@ -8,44 +8,80 @@
     <link rel="stylesheet" href="../common/common.css">
     <link rel="stylesheet" href="./home.css">
     <link rel="icon" type="image/x-icon" href="../img/optima-logo-black.png">
+    <script src="./pageCarros.js"></script>
+    <script src="./home.js"></script>   
 </head>
 
 <body>
 
-    <section class="menu">
+    <nav class="menu">
         <button class="hamburguer" id="hamburguer"></button>
         <img src="../img/optima-logo-white.svg" alt="" class="logo_optima_white">
         <div class="nav-list">
-        <ul>
-            <li>
-                <a href="/home" class="home-black">
-                    <img src="../img/home-icon.svg" alt="">
-                    <p> Home </p>
-                </a>
-            </li>
-            <li>
-                <div class="home-purple">
-                    <img src="../img/carMenu-icon.svg" alt="">
-                    <p> Veículos </p>
+            <ul>
+                <li>
+                    <a href="/home" class="home-black">
+                        <img src="../img/home-icon.svg" alt="">
+                        <p> Home </p>
+                    </a>
+                </li>
+                <li>
+                    <div class="home-purple">
+                        <img src="../img/carMenu-icon.svg" alt="">
+                        <p> Veículos </p>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/clientes" class="home-black">
+                        <img src="../img/user-icon.svg" alt="">
+                        <p class="p-clientes"> Clientes </p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section-cars">
+        <div>
+            <p> Área Administrativa </p>
+            <h1> Controle de veículos </h1>
+        </div>
+
+        <div class="cadastro-veiculos">
+            <h1> Novo Veículo</h1>
+            <select>
+                <option>Carro</option>
+                <option>Moto</option>
+                <option>Caminhão</option>
+            </select>
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <button> Salvar </button>
+        </div>
+
+        <div class="listagem-veiculos">
+            
+            <div class="">
+                <h1> Lista de veículos </h1>
+                <input type="text" placeholder="Modelo, Marca, Placa">
+            </div>
+
+            <div class="">
+                <div> 
+                    <p> Modelo </p>
+                    <p> Marca </p>
+                    <p> Ano </p>
+                    <p> Tipo </p>
+                    <p> Placa </p>
                 </div>
-            </li>
-
-            <li>
-                <a href="/clientes" class="home-black">
-                    <img src="../img/user-icon.svg" alt="">
-                    <p> Clientes </p>
-                </a>
-            </li>
-        </ul>
-    </div>
+                <div></div>
+            </div>
+        </div>
     </section>
-
-    <section class="section-logo">
-        <img src="../img/optima-logo-black.svg" alt="" class="logo-optima-black">
-    </section>
-
 
 </body>
-<script src="./home.js"></script>
 
 </html>

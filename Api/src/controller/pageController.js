@@ -25,9 +25,9 @@ server.get('/home' , (req, resp) => {
 });
 
 
-server.get('home/home.js', verifyToken, (req,resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/pages/login/login.html'));
-})
+// server.get('home/home.js', verifyToken, (req,resp) => {
+//     resp.sendFile(path.join(__dirname, '../../../site/pages/login/login.html'));
+// })
 
 
 // PageCarros

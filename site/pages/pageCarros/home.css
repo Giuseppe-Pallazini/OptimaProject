@@ -100,6 +100,11 @@ body {
                 text-align: center;
                 font-family: 'inter', sans-serif;
                 font-size: 12px;
+                margin: 0 1.1em 0 0;
+            }
+            
+            .p-clientes {
+                margin: 0;
             }
         }
 
@@ -109,18 +114,22 @@ body {
 
 
 
-.section-logo {
+
+
+
+
+
+
+
+
+
+
+
+.section-cars {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-
-    .logo-optima-black {
-        height: auto;
-        opacity: .1;
-    }
-
+    flex-direction: column;
 }
+
 
 @media (max-width: 1350px) {
     .menu {
