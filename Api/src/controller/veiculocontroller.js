@@ -137,7 +137,7 @@ server.get('/veiculo/:id', verifyToken, async (req, resp) => {
         const id = Number(req.params.id);
 
         if(!id) {
-            throw new Error("Número não identificado");
+            throw new Error("Número não identificado")
         }
         
         const resposta = await BuscarPorID(id);
