@@ -147,7 +147,7 @@ server.get('/veiculo/:id', verifyToken, async (req, resp) => {
         }
         resp.send(resposta);
     } catch (err) {
-        resp.status(404).send({message: err.message})
+        resp.status(404).send({message: err.message});
     }
 })
 
