@@ -32,7 +32,7 @@ export async function inserirImagem(imagem, id) {
 export async function listarTodosVeículos() {
     const comando =
         `select 	id_veiculo          id,
-                ds_modelo               nome,
+                ds_modelo               modelo,
                 ds_marca                marca,
                 vl_valor                valor,
                 ds_placa 	 	        placa,
@@ -54,7 +54,7 @@ export async function listarTodosVeículos() {
 export async function buscarPorNome(nome, marca) {
     const comando =
         `select 	id_veiculo              id,
-                    ds_modelo               nome,
+                    ds_modelo               modelo,
                     ds_marca                marca,
                     vl_valor                valor,
                     ds_placa                placa,

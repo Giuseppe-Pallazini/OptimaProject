@@ -116,21 +116,6 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-.section-cars {
-    display: flex;
-    flex-direction: column;
-}
-
-
 @media (max-width: 1350px) {
     .menu {
         .logo_optima_white {
@@ -195,18 +180,20 @@ body {
 
         ul {
             margin-top: 10em;
+
+            a, div {
+                opacity: 0;
+            }
         }
 
-        a, div {
-            opacity: 0;
-        }
+
         
     }
 
-    .nav-list ul li:nth-child(1) div {
+    .nav-list ul li:nth-child(1) a {
         transition: .5s .6s;
     }
-    .nav-list ul li:nth-child(2) a {
+    .nav-list ul li:nth-child(2) div {
         transition: .5s .8s;
     }
     .nav-list ul li:nth-child(3) a {
@@ -219,7 +206,7 @@ body {
         pointer-events: all;
     }
 
-    .menu.active .nav-list a, .menu.menu.active .nav-list div {
+    .menu.active .nav-list ul li a, .menu.menu.active .nav-list ul li div {
         opacity: 1;
     }
 

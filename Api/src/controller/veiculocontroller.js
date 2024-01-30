@@ -143,11 +143,11 @@ server.get('/veiculo/:id', verifyToken, async (req, resp) => {
         const resposta = await BuscarPorID(id);
 
         if (!resposta) {
-            throw new Error("Veículo não localizado.");
+                resp.status(400).send({message: 'Veículo não localizado'})
         }
         resp.send(resposta);
     } catch (err) {
-        resp.send({message: err.message})
+        resp.status(404).send({message: err.message})
     }
 })
 

@@ -1,0 +1,34 @@
+.section-cars {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 216px);
+    font-family: 'inter', sans-serif;
+
+    .informacao {
+        margin: 5.5em 0 0 4.625em;
+        
+        p {
+            color: #8837C7;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-weight: 300;
+        }
+    
+    }
+
+    .cadastro-veiculo {
+        margin: 2.8125em 0 0 4.625em;
+        width: calc(100vw - 370px);
+        height: 493px;
+        background: #FFF;
+        box-shadow: 0px 0px 8px 0px rgba(122, 122, 122, 0.25);
+
+        .especificacoes-veiculo {
+            margin: 2.8125em 0 0 2.25em;
+        }
+    }
+}
+
+
