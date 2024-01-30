@@ -19,7 +19,7 @@ export async function generateToken(id, nome) {
 
 //! middleware para o token
 export async function verifyToken(req, res, next) {
-    const token = req.cookies.token;
+    const token = req.cookies.Authorization;
 
     if (!token) {
       console.log('Token n existe')

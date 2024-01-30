@@ -24,7 +24,7 @@ server.post('/veiculo', verifyToken, async (req, resp) => {
     try {
         const novoVeiculo = req.body;
 
-        await validateVehicle(novoVeiculo)
+        await validateVehicle(novoVeiculo) //! Validações para o cadastro de veículo
   
         const veiculoinserido = await inserirVeiculo(novoVeiculo);
   

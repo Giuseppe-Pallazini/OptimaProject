@@ -34,7 +34,7 @@ server.post("/login", async (req, resp) => {
             throw new Error('Erro ao gerar token')
         }
         
-        resp.cookie('token', token);
+        resp.cookie('Authorization', token);
 
         resp.send({
              id: resposta.id,
