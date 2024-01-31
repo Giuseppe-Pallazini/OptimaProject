@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./home.css">
     <link rel="stylesheet" href="./pagecarros.css">
     <link rel="icon" type="image/x-icon" href="../img/optima-logo-black.png">
-    <script src="./pageCarros.js"></script>
 </head>
 
 <body>
@@ -57,15 +56,16 @@
                         <option>Moto</option>
                         <option>Caminhão</option>
                     </select>
-                    <input type="text" placeholder="modelo">
-                    <input type="text" placeholder="Marca">
-                    <input type="number" placeholder="Valor">
-                    <input type="text" placeholder="Placa" maxlength="7">
-                    <input type="text" placeholder="Ano de fabricação" maxlength="4">
-                    <input type="text" placeholder="Quilometragem">
-                    <input type="text" placeholder="Classe">
+                    <input type="text" placeholder="modelo" class="modelo">
+                    <input type="text" placeholder="Marca" class="marca">
+                    <input type="number" placeholder="Valor" class="valor">
+                    <input type="text" placeholder="Placa" maxlength="7" class="placa">
+                    <input type="number" placeholder="Ano de fabricação" maxlength="4" class="anoFab">
+                    <input type="number" placeholder="Quilometragem" class="km">
+                    <input type="number" placeholder="Código" class="codigo">
+                    <input type="text" placeholder="Classe" class="classe">
                 </div>
-                <button> Salvar </button>
+                <button class="button-salvar"> Salvar </button>
             </div>
 
         </div>
@@ -92,5 +92,6 @@
 
 </body>
 <script src="./home.js"></script>
+<script src="./pageCarros.js"></script>
 
 </html>

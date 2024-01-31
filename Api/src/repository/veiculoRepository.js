@@ -3,10 +3,10 @@ import { con } from "./connection.js";
 /*inserir veiculo*/
 export async function inserirVeiculo(veiculo) {
     const comando =
-        `INSERT INTO tb_veiculo (ds_modelo, ds_marca, vl_valor, ds_placa, dt_anofab, vl_km, ds_classe)
-                                     VALUES (?, ?, ?, ?, ?, ?, ?)`
+        `INSERT INTO TB_VEICULO (DS_MODELO, DS_MARCA, VL_VALOR, DS_PLACA, DT_ANOFAB, VL_KM, NR_CODIGO, DS_CLASSE, IMG_VEICULO, DS_COR, NR_PORTAS, DS_TIPO)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
-    const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anofab, veiculo.km, veiculo.classe]);
+    const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anoFab, veiculo.km, veiculo.codigo, veiculo.classe, veiculo.img, veiculo.cor, veiculo.numPortas, veiculo.tipo]);
     veiculo.id = resposta.insertId;
     return veiculo;
 }
@@ -137,14 +137,29 @@ export async function validateVehicle(novoVeiculo) {
     else if (!novoVeiculo.placa) {
         throw new Error("Placa do veiculo é obrigatorio!");
     }
-    else if (!novoVeiculo.anofab) {
+    else if (!novoVeiculo.anoFab) {
         throw new Error("Ano de Fabricação do veiculo é obrigatorio!");
     }
     else if (!novoVeiculo.km) {
         throw new Error("Quilometragem do veiculo é obrigatorio!");
     }
+    else if (!novoVeiculo.codigo) {
+        throw new Error("Código do veiculo é obrigatorio!");
+    }
     else if (!novoVeiculo.classe) {
         throw new Error("Classe do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.img) {
+        throw new Error("Imagem do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.cor) {
+        throw new Error("Cor do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.numPortas) {
+        throw new Error("Número de portas do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.tipo) {
+        throw new Error("Tipo do veiculo é obrigatorio!");
     }
 
     if (!novoVeiculo.modelo.trim())
@@ -159,7 +174,17 @@ export async function validateVehicle(novoVeiculo) {
         throw new Error("Ano de Fabricação do veiculo é obrigatorio!");
     else if (!novoVeiculo.km)
         throw new Error("Quilometragem do veiculo é obrigatorio!");
+    else if (!novoVeiculo.codigo)
+        throw new Error("Código do veiculo é obrigatorio!");
     else if (!novoVeiculo.classe.trim())
         throw new Error("Classe do veiculo é obrigatorio!");
+    else if (!novoVeiculo.img.trim())
+        throw new Error("Imagem do veiculo é obrigatorio!");
+    else if (!novoVeiculo.cor.trim())
+        throw new Error("Cor do veiculo é obrigatorio!");
+    else if (!novoVeiculo.numPortas)
+        throw new Error("Número de portas do veiculo é obrigatorio!");
+    else if (!novoVeiculo.tipo.trim())
+        throw new Error("Tipo do veiculo é obrigatorio!");
 
 }
