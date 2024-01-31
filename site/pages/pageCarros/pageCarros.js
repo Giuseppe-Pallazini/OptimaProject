@@ -1,43 +1,51 @@
 const url = "http://localhost:5000/veiculo";
 
-let button = document.querySelector('.button-salvar')
+let button, modelo, marca, valor, placa, anoFab, km, classe, img, cor, numPortas, tipo;
 
-let modeloInput = document.querySelector('.modelo');
-let modelo;
-
-let marcaInput = document.querySelector('.marca');
-let marca;
-
-let valorInput = document.querySelector('.valor');
-let valor;
-
-let placaInput = document.querySelector('.placa');
-let placa;
-
-let anoFabInput = document.querySelector('.anoFab');
-let anoFab;
-
-let kmInput = document.querySelector('.km');
-let km;
-
-let cogigoInput = document.querySelector('.codigo');
-let classe;
-
-let imgInput = document.querySelector('.img');
-let img;
-
-let corInput = document.querySelector('.cor');
-let cor;
-
-let numPortasInput = document.querySelector('.numPortas');
-let numPortas;
-
-let tipoInput = document.querySelector('.tipo');
-let tipo;
+let buttonInput     = document.querySelector('.button-salvar')
+let modeloInput     = document.querySelector('.modelo');
+let marcaInput      = document.querySelector('.marca');
+let valorInput      = document.querySelector('.valor');
+let placaInput      = document.querySelector('.placa');
+let anoFabInput     = document.querySelector('.anoFab');
+let kmInput         = document.querySelector('.km');
+let cogigoInput     = document.querySelector('.codigo');
+let imgInput        = document.querySelector('.img');
+let corInput        = document.querySelector('.cor');
+let numPortasInput  = document.querySelector('.numPortas');
+let tipoInput       = document.querySelector('.tipo');
 
 
-modeloInput.addEventListener("input", () => modelo = modeloInput.value )
+modeloInput.addEventListener("input",  modelo = modeloInput.value )
+// marcaInput.addEventListener("input", () => marca = marcaInput.value )
+// valorInput.addEventListener("input", () => valor = valorInput.value )
+// placaInput.addEventListener("input", () => placa = placaInput.value )
+// anoFabInput.addEventListener("input", () => anoFab = anoFabInput.value )
+// kmInput.addEventListener("input", () => km = kmInput.value )
+// cogigoInput.addEventListener("input", () => codigo = cogigoInput.value )
+// imgInput.addEventListener("input", () => img = imgInput.value )
+// corInput.addEventListener("input", () => cor = corInput.value )
+// numPortasInput.addEventListener("input", () => numPortas = numPortasInput.value )
+// tipoInput.addEventListener("input", () => tipo = tipoInput.value )
 
+
+// buttonInput.addEventListener("click", () => console.log(`
+//     modelo: ${modelo} <br>
+//     marca: ${marca} <br>
+//     valor: ${valor} <br>
+//     placa: ${placa} <br>
+//     anoFab: ${anoFab} <br>
+//     km: ${km} <br>
+//     codigo: ${codigo} <br>
+//     img: ${img} <br>
+//     cor: ${cor} <br>
+//     numPortas: ${numPortas} <br>
+//     tipo: ${tipo} <br>
+// `))
+
+buttonInput.addEventListener("click", () => console.log(`
+    modelo: ${modelo} <br>
+`))
 
 
 fetch(url, {
