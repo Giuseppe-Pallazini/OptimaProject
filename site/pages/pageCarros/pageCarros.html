@@ -50,12 +50,14 @@
         <div class="cadastro-veiculo">
             <div class="especificacoes-veiculo">
                 <h1> Novo Veículo</h1>
+                <p class="error"> </p>
                 <div class="inputs">
-                    <select>
-                        <option>Carro</option>
-                        <option>Moto</option>
-                        <option>Caminhão</option>
-                    </select>
+                        <select class="tipo" id="lista-conteudos">
+                            <option>Selecione</option>
+                            <option>Carro</option>
+                            <option>Moto</option>
+                            <option>Caminhão</option>
+                        </select>
                     <input type="text" placeholder="modelo" class="modelo">
                     <input type="text" placeholder="Marca" class="marca">
                     <input type="number" placeholder="Valor" class="valor">
@@ -67,7 +69,6 @@
                     <input type="file" class="img">
                     <input type="color" placeholder="Cor" class="cor">
                     <input type="number" placeholder="numPortas" class="numPortas">
-                    <input type="text" placeholder="Tipo" class="tipo">
                 </div>
                 <button class="button-salvar"> Salvar </button>
             </div>
