@@ -36,8 +36,6 @@ buttonInput.addEventListener("click", () => insertVehiclhe())
 
 function insertVehiclhe() {
 
-    console.log(typeof tipo)
-
     fetch(url, {
         method: "POST",
         headers: {
