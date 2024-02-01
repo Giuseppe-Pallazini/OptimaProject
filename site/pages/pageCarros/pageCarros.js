@@ -61,14 +61,28 @@ function insertVehiclhe() {
     .then(response => {
         if (!response.ok) {
             response.json().then(data => {
-                alternateText(data.erro); //! Deixar vermelho o texto
+                alternateTextError(data.erro); //! Deixar vermelho o texto
                 throw new Error(data.erro);
+            })
+        } else {
+            response.json().then(data => {
+                console.log(data.message)
+                alternateTextOk(data.message)
             })
         }
     })
 }
 
-function alternateText(error) {
-    let doc = document.querySelector(".error")
-    doc.innerHTML = error   
+function alternateTextError(error) {
+    let doc = document.querySelector(".error");
+    doc.style.color = 'red';
+    doc.style.opacity = '1';
+    doc.innerHTML = "*" + error;
+}
+
+function alternateTextOk(data) {
+    let doc = document.querySelector(".error");
+    doc.style.color = 'green';
+    doc.style.opacity = '1'
+    doc.innerHTML = "*" + data;
 }

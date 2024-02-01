@@ -125,7 +125,10 @@ export async function BuscarPorID(id) {
 
 export async function validateVehicle(novoVeiculo) {
 
-    if (!novoVeiculo.modelo) {
+    if (!novoVeiculo.tipo || novoVeiculo.tipo == "Tipo") {
+        throw new Error("Tipo do veiculo é obrigatorio!");
+    }
+    else if (!novoVeiculo.modelo) {
         throw new Error("Modelo do veiculo é obrigatorio!");
     }
     else if (!novoVeiculo.marca) {
@@ -157,9 +160,6 @@ export async function validateVehicle(novoVeiculo) {
     }
     else if (!novoVeiculo.numPortas) {
         throw new Error("Número de portas do veiculo é obrigatorio!");
-    }
-    else if (!novoVeiculo.tipo || novoVeiculo.tipo != 'Carro'|| novoVeiculo.tipo != 'Moto'|| novoVeiculo.tipo != 'Caminhão' ) {
-        throw new Error("Tipo do veiculo é obrigatorio!");
     }
 
     if (!novoVeiculo.modelo.trim())

@@ -28,7 +28,7 @@ server.post('/veiculo', verifyToken, async (req, resp) => {
   
         const veiculoinserido = await inserirVeiculo(novoVeiculo);
   
-        resp.send(veiculoinserido);
+        resp.send({message: "Veículo cadastrado com sucesso!"});
   
     } catch (err) {
         resp.status(401).send({
