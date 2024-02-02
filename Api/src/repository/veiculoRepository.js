@@ -124,67 +124,59 @@ export async function BuscarPorID(id) {
 
 
 export async function validateVehicle(novoVeiculo) {
+    const error = new Error("Erro no processamento");
+    const detalhesErros = {};
+    error.detalhes = detalhesErros;
+    detalhesErros.status = 403 // Status a ser retornado
 
-    if (!novoVeiculo.tipo || novoVeiculo.tipo == "Tipo") {
-        throw new Error("Tipo do veiculo é obrigatorio!");
+
+    if (!novoVeiculo.tipo || novoVeiculo.tipo == "Tipo" || !novoVeiculo.tipo.trim()) {
+        detalhesErros.message = "Tipo do veículo é obrigatório!"; //! Mensagem a ser retornada
+        throw error;
     }
-    else if (!novoVeiculo.modelo) {
-        throw new Error("Modelo do veiculo é obrigatorio!");
+    else if (!novoVeiculo.modelo || !novoVeiculo.modelo.trim()) {
+        detalhesErros.message = "Modelo do veículo é obrigatório!";
+        throw error;
     }
-    else if (!novoVeiculo.marca) {
-        throw new Error("Marca do veiculo é obrigatorio!");
+    else if (!novoVeiculo.marca || !novoVeiculo.marca.trim()) {
+        detalhesErros.message = "Marca do veículo é obrigatório!";
+        throw error
     }
-    else if (!novoVeiculo.valor) {
-        throw new Error("Valor do veiculo é obrigatorio!");
+    else if (!novoVeiculo.valor || novoVeiculo.valor < 0 || novoVeiculo.valor == undefined) {
+        detalhesErros.message = "Valor do veículo é obrigatório!";
+        throw error;
     }
-    else if (!novoVeiculo.placa) {
-        throw new Error("Placa do veiculo é obrigatorio!");
+    else if (!novoVeiculo.placa || !novoVeiculo.placa.trim()) {
+        detalhesErros.message = "Modelo do veículo é obrigatório!";
+        throw error;
     }
-    else if (!novoVeiculo.anoFab) {
-        throw new Error("Ano de Fabricação do veiculo é obrigatorio!");
+    else if (!novoVeiculo.anoFab || novoVeiculo.anoFab < 0 || novoVeiculo.anoFab == undefined) {
+        detalhesErros.message = "Ano de fabricação do veículo é obrigatório!";
+        throw error;
     }
     else if (!novoVeiculo.km) {
-        throw new Error("Quilometragem do veiculo é obrigatorio!");
+        detalhesErros.message = "Quilometragem do veículo é obrigatório!";
+        throw error;
     }
-    else if (!novoVeiculo.codigo) {
-        throw new Error("Código do veiculo é obrigatorio!");
+    else if (!novoVeiculo.codigo || typeof novoVeiculo.codigo !=="number") {
+        detalhesErros.message = "Código do veículo é obrigatório!";
+        throw error;
     }
-    else if (!novoVeiculo.classe) {
-        throw new Error("Classe do veiculo é obrigatorio!");
+    else if (!novoVeiculo.classe || !novoVeiculo.classe.trim()) {
+        detalhesErros.message = "Classe do veículo é obrigatório!";
+        throw error
     }
-    else if (!novoVeiculo.img) {
-        throw new Error("Imagem do veiculo é obrigatorio!");
+    else if (!novoVeiculo.img || !novoVeiculo.img.trim()) {
+        detalhesErros.message = "Imagem do veículo é obrigatório!";
+        throw error
     }
-    else if (!novoVeiculo.cor) {
-        throw new Error("Cor do veiculo é obrigatorio!");
+    else if (!novoVeiculo.cor || !novoVeiculo.cor.trim()) {
+        detalhesErros.message = "Cor do veículo é obrigatório!";
+        throw error
     }
-    else if (!novoVeiculo.numPortas) {
-        throw new Error("Número de portas do veiculo é obrigatorio!");
+    else if (!novoVeiculo.numPortas ) {
+        detalhesErros.message = "Número de portas do veículo é obrigatório!aa";
+        throw error
     }
-
-    if (!novoVeiculo.modelo.trim())
-        throw new Error("Modelo do veiculo é obrigatorio!");
-    else if (!novoVeiculo.marca.trim())
-        throw new Error("Marca do veiculo é obrigatorio!");
-    else if (novoVeiculo.valor < 0 || undefined)
-        throw new Error("Valor do veiculo é obrigatorio!");
-    else if (!novoVeiculo.placa.trim())
-        throw new Error("Placa do veiculo é obrigatorio!");
-    else if (novoVeiculo.anofab < 0 || undefined)
-        throw new Error("Ano de Fabricação do veiculo é obrigatorio!");
-    else if (!novoVeiculo.km)
-        throw new Error("Quilometragem do veiculo é obrigatorio!");
-    else if (!novoVeiculo.codigo)
-        throw new Error("Código do veiculo é obrigatorio!");
-    else if (!novoVeiculo.classe.trim())
-        throw new Error("Classe do veiculo é obrigatorio!");
-    else if (!novoVeiculo.img.trim())
-        throw new Error("Imagem do veiculo é obrigatorio!");
-    else if (!novoVeiculo.cor.trim())
-        throw new Error("Cor do veiculo é obrigatorio!");
-    else if (!novoVeiculo.numPortas)
-        throw new Error("Número de portas do veiculo é obrigatorio!");
-    else if (!novoVeiculo.tipo.trim())
-        throw new Error("Tipo do veiculo é obrigatorio!");
 
 }

@@ -57,14 +57,14 @@ function insertVehiclhe() {
         })
     })
     .then(response => {
-        if (!response.ok) {
+        if (!response.status(200)) {
+            console.log('caiu 1')
             response.json().then(data => {
-                alternateTextError(data.erro); //! Deixar vermelho o texto
-                throw new Error(data.erro);
+                alternateTextError(data.message); //! Deixar vermelho o texto
             })
         } else {
+            console.log('caiu 2')
             response.json().then(data => {
-                console.log(data.message)
                 alternateTextOk(data.message)
             })
         }

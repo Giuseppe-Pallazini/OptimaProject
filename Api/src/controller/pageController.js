@@ -1,4 +1,4 @@
-import { verifyToken } from '../repository/usuarioRepository.js'
+import { verifyTokenLogin } from '../repository/usuarioRepository.js'
 import { fileURLToPath } from 'url';
 import path from 'path';
 import express  from 'express';
@@ -20,18 +20,18 @@ server.get('/', (req, resp) => {
 
 
 // Home
-server.get('/home' , (req, resp) => {
+server.get('/home', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../site/pages/home/home.html'));
 });
 
 
-// server.get('home/home.js', verifyToken, (req,resp) => {
+// server.get('home/home.js', verifyTokenLogin, (req,resp) => {
 //     resp.sendFile(path.join(__dirname, '../../../site/pages/login/login.html'));
 // })
 
 
 // PageCarros
-server.get('/pageCarros', verifyToken, (req, resp) => {
+server.get('/pageCarros', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../site/pages/pageCarros/pageCarros.html'));
 });
 
@@ -43,7 +43,7 @@ server.get('/login', (req, resp) => {
 
 
 // Clientes
-server.get('/clientes', (req, resp) => {
+server.get('/clientes', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../site/pages/clientes/clientes.html'));
 });
 
