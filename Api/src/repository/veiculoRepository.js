@@ -53,7 +53,7 @@ export async function listarTodosVeículos() {
 /*Buscar Veiculo*/
 export async function buscarPorNome(nome, marca) {
     const comando =
-        `select 	id_veiculo              id,
+        `   select 	id_veiculo              id,
                     ds_modelo               modelo,
                     ds_marca                marca,
                     vl_valor                valor,
@@ -62,9 +62,9 @@ export async function buscarPorNome(nome, marca) {
                     vl_km                   km,
                     ds_classe               classe,
                     img_veiculo             imagem
-       from tb_veiculo
-	            where ds_modelo like ?
-                  or ds_marca like ? `
+            from tb_veiculo
+            where ds_modelo like            ?
+                  or ds_marca like          ? `
 
     const [linhas] = await con.query(comando, [`%${nome}%`, `%${marca}%`]);
     return linhas;
@@ -85,7 +85,7 @@ export async function alterarVeiculo(id, veiculo) {
      vl_km      	 =      ?,
      ds_classe 		 =      ?
 
-    where id_veiculo = ?`
+    where id_veiculo =      ?`
 
     const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anofab, veiculo.km, veiculo.classe, id])
     return resposta.affectedRows;
@@ -127,8 +127,12 @@ export async function validateVehicle(novoVeiculo) {
     const error = new Error("Erro no processamento");
     const detalhesErros = {};
     error.detalhes = detalhesErros;
-    detalhesErros.status = 403 // Status a ser retornado
+    detalhesErros.status = 403; // Status a ser retornado
 
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+    
 
     if (!novoVeiculo.tipo || novoVeiculo.tipo == "Tipo" || !novoVeiculo.tipo.trim()) {
         detalhesErros.message = "Tipo do veículo é obrigatório!"; //! Mensagem a ser retornada
@@ -140,7 +144,7 @@ export async function validateVehicle(novoVeiculo) {
     }
     else if (!novoVeiculo.marca || !novoVeiculo.marca.trim()) {
         detalhesErros.message = "Marca do veículo é obrigatório!";
-        throw error
+        throw error;
     }
     else if (!novoVeiculo.valor || novoVeiculo.valor < 0 || novoVeiculo.valor == undefined) {
         detalhesErros.message = "Valor do veículo é obrigatório!";
@@ -164,19 +168,22 @@ export async function validateVehicle(novoVeiculo) {
     }
     else if (!novoVeiculo.classe || !novoVeiculo.classe.trim()) {
         detalhesErros.message = "Classe do veículo é obrigatório!";
-        throw error
+        throw error;
     }
     else if (!novoVeiculo.img || !novoVeiculo.img.trim()) {
         detalhesErros.message = "Imagem do veículo é obrigatório!";
-        throw error
+        throw error;
     }
     else if (!novoVeiculo.cor || !novoVeiculo.cor.trim()) {
         detalhesErros.message = "Cor do veículo é obrigatório!";
-        throw error
+        throw error;
     }
-    else if (!novoVeiculo.numPortas ) {
-        detalhesErros.message = "Número de portas do veículo é obrigatório!aa";
-        throw error
+    else if (novoVeiculo.numPortas == 0) {
+        return
+    }
+    else if (!novoVeiculo.numPortas) {
+        detalhesErros.message = "Número de portas do veículo é obrigatório!";
+        throw error;
     }
 
 }

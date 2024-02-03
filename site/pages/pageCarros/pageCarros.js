@@ -58,12 +58,10 @@ function insertVehiclhe() {
     })
     .then(response => {
         if (!response.status(200)) {
-            console.log('caiu 1')
             response.json().then(data => {
                 alternateTextError(data.message); //! Deixar vermelho o texto
             })
         } else {
-            console.log('caiu 2')
             response.json().then(data => {
                 alternateTextOk(data.message)
             })

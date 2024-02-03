@@ -29,11 +29,6 @@ server.post('/veiculo', (req, resp, next) => verifyTokenLogin(req, resp, next, f
             return;
         }
 
-        if(typeof novoVeiculo != "object") {
-            // resp.status(401).send({ message: "Erro na solicitação"})
-            console.log("Erro")
-        }
-
         await validateVehicle(novoVeiculo) //* Validações para o cadastro de veículo
 
         await inserirVeiculo(novoVeiculo); //- Inserir veículo
