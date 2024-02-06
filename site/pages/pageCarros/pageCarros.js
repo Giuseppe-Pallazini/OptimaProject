@@ -1,20 +1,23 @@
 const url = "http://localhost:5000/veiculo";
 
-let button, modelo, marca, valor, placa, anoFab, km, classe, img, cor, numPortas, codigo, tipo;
+let modelo, marca, valor, placa, anoFab, km, classe, img, cor, numPortas, codigo, tipo;
 
-let buttonInput     = document.querySelector('.button-salvar')
-let modeloInput     = document.querySelector('.modelo');
-let marcaInput      = document.querySelector('.marca');
-let valorInput      = document.querySelector('.valor');
-let placaInput      = document.querySelector('.placa');
-let anoFabInput     = document.querySelector('.anoFab');
-let kmInput         = document.querySelector('.km');
-let classeInput     = document.querySelector('.classe')
-let codigoInput     = document.querySelector('.codigo');
-let imgInput        = document.querySelector('.img');
-let corInput        = document.querySelector('.cor');
-let numPortasInput  = document.querySelector('.numPortas');
-let tipoInput       = document.querySelector('#lista-conteudos');
+
+let buttonInput = document.querySelector('.button-salvar');
+let buttonGerarCodigo = document.querySelector('.codigo_aleatorio')
+let modeloInput = document.querySelector('.modelo');
+let marcaInput = document.querySelector('.marca');
+let valorInput = document.querySelector('.valor');
+let placaInput = document.querySelector('.placa');
+let anoFabInput = document.querySelector('.anoFab');
+let kmInput = document.querySelector('.km');
+let classeInput = document.querySelector('.classe')
+let codigoInput = document.querySelector('.codigo');
+let imgInput = document.querySelector('.img');
+let corInput = document.querySelector('.cor');
+let numPortasInput = document.querySelector('.numPortas');
+let tipoInput = document.querySelector('#lista-conteudos');
+
 
 
 modeloInput.addEventListener("input", () => modelo = modeloInput.value.trim())
@@ -31,27 +34,17 @@ classeInput.addEventListener("input", () => classe = classeInput.value.trim())
 tipoInput.addEventListener("change", () => tipo = tipoInput.value.trim())
 
 
-if(cor == undefined) {
+if (cor == undefined) {
     cor = "#000000"
 }
 
+buttonInput.addEventListener("click", () => insertVehiclhe());
+buttonGerarCodigo.addEventListener("click", () => {
+    let codigoAleatorio = Math.floor(1000 + Math.random() * 9000);
+    codigo = codigoAleatorio
 
-buttonInput.addEventListener("click", () => insertVehiclhe())
-buttonInput.addEventListener("click", () => console.log(`
-    "modelo": ${modelo}
-    "marca": ${marca}
-    "valor": ${valor}
-    "placa": ${placa}
-    "anoFab": ${anoFab}
-    "km": ${km}
-    "codigo": ${codigo}
-    "img": ${img}
-    "cor": ${cor}
-    "numPortas": ${numPortas}
-    "classe": ${classe}
-    "tipo": ${tipo}
-`))
-
+    codigoInput.value = codigo
+})
 
 function insertVehiclhe() {
 
@@ -75,17 +68,16 @@ function insertVehiclhe() {
             "tipo": tipo
         })
     })
-    .then(response => {
-        if (!response.ok) {
-            response.json().then(data => {
-                alternateTextError(data.message); //! Deixar vermelho o texto
-            })
-        } else {
+        .then(response => {
+            if (!response.ok) {
+                response.json().then(data => {
+                    alternateTextError(data.message); //! Deixar vermelho o texto
+                })
+            }
             response.json().then(data => {
                 alternateTextOk(data.message)
             })
-        }
-    })
+        })
 }
 
 function alternateTextError(error) {
@@ -97,10 +89,16 @@ function alternateTextError(error) {
 
 function alternateTextOk(data) {
     let doc = document.querySelector(".error");
-    doc.style.color = '#15ff00';
+    doc.style.color = '#2dcc1f  ';
     doc.style.opacity = '1'
     doc.innerHTML = "*" + data;
-    
+
     buttonInput.style.cursor = "not-allowed";
     buttonInput.setAttribute("disabled", "disabled");
 }
+
+
+
+// Gerar um número aleatório de 4 dígitos
+
+

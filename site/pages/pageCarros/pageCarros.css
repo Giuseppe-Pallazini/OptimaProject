@@ -74,6 +74,10 @@
                 }
             
             }
+
+            .button-salvar, .button-limpar {
+                cursor: pointer;
+            }
         }
     }
 }
