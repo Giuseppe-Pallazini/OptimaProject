@@ -10,28 +10,47 @@ let placaInput      = document.querySelector('.placa');
 let anoFabInput     = document.querySelector('.anoFab');
 let kmInput         = document.querySelector('.km');
 let classeInput     = document.querySelector('.classe')
-let cogigoInput     = document.querySelector('.codigo');
+let codigoInput     = document.querySelector('.codigo');
 let imgInput        = document.querySelector('.img');
 let corInput        = document.querySelector('.cor');
 let numPortasInput  = document.querySelector('.numPortas');
 let tipoInput       = document.querySelector('#lista-conteudos');
 
 
-modeloInput.addEventListener("input", () => modelo = modeloInput.value )
-marcaInput.addEventListener("input", () => marca = marcaInput.value )
-valorInput.addEventListener("input", () => valor = valorInput.value )
-placaInput.addEventListener("input", () => placa = placaInput.value )
-anoFabInput.addEventListener("input", () => anoFab = anoFabInput.value )
-kmInput.addEventListener("input", () => km = kmInput.value )
-cogigoInput.addEventListener("input", () => codigo = cogigoInput.value )
-imgInput.addEventListener("input", () => img = imgInput.value )
-corInput.addEventListener("input", () => cor = corInput.value )
-numPortasInput.addEventListener("input", () => numPortas = numPortasInput.value )
-classeInput.addEventListener("input", () => classe = classeInput.value )
-tipoInput.addEventListener("change", () => tipo = tipoInput.value )
+modeloInput.addEventListener("input", () => modelo = modeloInput.value.trim())
+marcaInput.addEventListener("input", () => marca = marcaInput.value.trim())
+valorInput.addEventListener("input", () => valor = valorInput.value)
+placaInput.addEventListener("input", () => placa = placaInput.value.trim())
+anoFabInput.addEventListener("input", () => anoFab = anoFabInput.value)
+kmInput.addEventListener("input", () => km = kmInput.value)
+codigoInput.addEventListener("input", () => codigo = Number(codigoInput.value))
+imgInput.addEventListener("input", () => img = imgInput.value)
+corInput.addEventListener("input", () => cor = corInput.value.trim())
+numPortasInput.addEventListener("input", () => numPortas = numPortasInput.value)
+classeInput.addEventListener("input", () => classe = classeInput.value.trim())
+tipoInput.addEventListener("change", () => tipo = tipoInput.value.trim())
+
+
+if(cor == undefined) {
+    cor = "#000000"
+}
 
 
 buttonInput.addEventListener("click", () => insertVehiclhe())
+buttonInput.addEventListener("click", () => console.log(`
+    "modelo": ${modelo}
+    "marca": ${marca}
+    "valor": ${valor}
+    "placa": ${placa}
+    "anoFab": ${anoFab}
+    "km": ${km}
+    "codigo": ${codigo}
+    "img": ${img}
+    "cor": ${cor}
+    "numPortas": ${numPortas}
+    "classe": ${classe}
+    "tipo": ${tipo}
+`))
 
 
 function insertVehiclhe() {
@@ -57,7 +76,7 @@ function insertVehiclhe() {
         })
     })
     .then(response => {
-        if (!response.status(200)) {
+        if (!response.ok) {
             response.json().then(data => {
                 alternateTextError(data.message); //! Deixar vermelho o texto
             })
@@ -78,7 +97,10 @@ function alternateTextError(error) {
 
 function alternateTextOk(data) {
     let doc = document.querySelector(".error");
-    doc.style.color = 'green';
+    doc.style.color = '#15ff00';
     doc.style.opacity = '1'
     doc.innerHTML = "*" + data;
+    
+    buttonInput.style.cursor = "not-allowed";
+    buttonInput.setAttribute("disabled", "disabled");
 }

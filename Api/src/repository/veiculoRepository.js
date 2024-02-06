@@ -107,13 +107,13 @@ export async function removerVeiculo(id) {
 export async function BuscarPorID(id) {
     const comando =
         `SELECT id_veiculo              id,
-               ds_modelo               nome,
+               ds_modelo                nome,
                 ds_marca                marca,
                 vl_valor                valor,
-                ds_placa 	 	        placa,
+                ds_placa                placa,
                 dt_anofab               anofab,
                 vl_km      	            km,
-                ds_classe 		        classe,
+                ds_classe               classe,
                 img_veiculo             imagem
     FROM        tb_veiculo
     WHERE       id_veiculo     =         ? ` ;
@@ -129,20 +129,16 @@ export async function validateVehicle(novoVeiculo) {
     error.detalhes = detalhesErros;
     detalhesErros.status = 403; // Status a ser retornado
 
-    function getRandomArbitrary(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-    
 
-    if (!novoVeiculo.tipo || novoVeiculo.tipo == "Tipo" || !novoVeiculo.tipo.trim()) {
+    if (!novoVeiculo.tipo || novoVeiculo.tipo == "Tipo") {
         detalhesErros.message = "Tipo do veículo é obrigatório!"; //! Mensagem a ser retornada
         throw error;
     }
-    else if (!novoVeiculo.modelo || !novoVeiculo.modelo.trim()) {
+    else if (!novoVeiculo.modelo) {
         detalhesErros.message = "Modelo do veículo é obrigatório!";
         throw error;
     }
-    else if (!novoVeiculo.marca || !novoVeiculo.marca.trim()) {
+    else if (!novoVeiculo.marca) {
         detalhesErros.message = "Marca do veículo é obrigatório!";
         throw error;
     }
@@ -150,8 +146,8 @@ export async function validateVehicle(novoVeiculo) {
         detalhesErros.message = "Valor do veículo é obrigatório!";
         throw error;
     }
-    else if (!novoVeiculo.placa || !novoVeiculo.placa.trim()) {
-        detalhesErros.message = "Modelo do veículo é obrigatório!";
+    else if (!novoVeiculo.placa) {
+        detalhesErros.message = "Placa do veículo é obrigatório!";
         throw error;
     }
     else if (!novoVeiculo.anoFab || novoVeiculo.anoFab < 0 || novoVeiculo.anoFab == undefined) {
@@ -162,24 +158,21 @@ export async function validateVehicle(novoVeiculo) {
         detalhesErros.message = "Quilometragem do veículo é obrigatório!";
         throw error;
     }
-    else if (!novoVeiculo.codigo || typeof novoVeiculo.codigo !=="number") {
+    else if (!novoVeiculo.codigo || typeof novoVeiculo.codigo !== "number") {
         detalhesErros.message = "Código do veículo é obrigatório!";
         throw error;
     }
-    else if (!novoVeiculo.classe || !novoVeiculo.classe.trim()) {
+    else if (!novoVeiculo.classe) {
         detalhesErros.message = "Classe do veículo é obrigatório!";
         throw error;
     }
-    else if (!novoVeiculo.img || !novoVeiculo.img.trim()) {
+    else if (!novoVeiculo.img) {
         detalhesErros.message = "Imagem do veículo é obrigatório!";
         throw error;
     }
-    else if (!novoVeiculo.cor || !novoVeiculo.cor.trim()) {
+    else if (!novoVeiculo.cor) {
         detalhesErros.message = "Cor do veículo é obrigatório!";
         throw error;
-    }
-    else if (novoVeiculo.numPortas == 0) {
-        return
     }
     else if (!novoVeiculo.numPortas) {
         detalhesErros.message = "Número de portas do veículo é obrigatório!";
