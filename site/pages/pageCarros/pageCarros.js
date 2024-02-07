@@ -46,22 +46,22 @@ buttonGerarCodigo.addEventListener("click", () => {
 })
 
 // Inserir veículo no banco ao clicar em 'salvar'
-// buttonInput.addEventListener("click", () => insertVehicle());
+buttonInput.addEventListener("click", () => insertVehicle());
 
-buttonInput.addEventListener("click", () => console.log(`
-modelo: ${modelo}
-marca: ${marca}
-valor: ${valor}
-placa: ${placa}
-anoFab: ${anoFab}
-km: ${km}
-codigo: ${codigo}
-img: ${img}
-cor: ${cor}
-numPortas: ${numPortas}
-classe: ${classe}
-tipo: ${tipo}
-`));
+// buttonInput.addEventListener("click", () => console.log(`
+// modelo: ${modelo}
+// marca: ${marca}
+// valor: ${valor}
+// placa: ${placa}
+// anoFab: ${anoFab}
+// km: ${km}
+// codigo: ${codigo}
+// img: ${img}
+// cor: ${cor}
+// numPortas: ${numPortas}
+// classe: ${classe}
+// tipo: ${tipo}
+// `));
 
 
 

@@ -92,8 +92,9 @@ export async function alterarVeiculo(id, veiculo) {
 /*Remover veiculo */
 export async function removerVeiculo(id) {
     const comando =
-        `delete from tb_veiculo
-	 where       id_veiculo = ? `
+            `delete 
+                from    tb_veiculo
+            where       id_veiculo =    ?`
 
     const [resposta] = await con.query(comando, id)
     return resposta.affectedRows
@@ -120,7 +121,10 @@ export async function BuscarPorID(id) {
 
 
 
-export async function listCodigo(codigo) {
+export async function validateCodigoExist(codigo) {
+    if(codigo == undefined) {
+        return false
+    }
     const comand = 
         `SELECT     id_veiculo 	    id
     FROM            tb_veiculo
@@ -129,6 +133,9 @@ export async function listCodigo(codigo) {
     const [linhas] = await con.query(comand, codigo);
     return linhas[0];
 }
+
+
+
 
 
 
@@ -167,8 +174,12 @@ export async function validateVehicle(novoVeiculo) {
         detalhesErros.message = "Quilometragem do veículo é obrigatório!";
         throw error;
     }
-    else if (!novoVeiculo.codigo || typeof novoVeiculo.codigo !== "number") {
+    else if (!novoVeiculo.codigo) {
         detalhesErros.message = "Código do veículo é obrigatório!";
+        throw error;
+    }
+    else if (await validateCodigoExist(novoVeiculo.codigo)) {
+        detalhesErros.message = "Código já existe";
         throw error;
     }
     else if (!novoVeiculo.classe) {

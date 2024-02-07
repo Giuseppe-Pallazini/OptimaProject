@@ -2,7 +2,7 @@ import multer from 'multer';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import express from 'express';
-import { inserirImagem, removerVeiculo, inserirVeiculo, listarTodosVeículos, alterarVeiculo, buscarPorNome, BuscarPorID, validateVehicle, listCodigo } from '../repository/veiculoRepository.js';
+import { inserirImagem, removerVeiculo, inserirVeiculo, listarTodosVeículos, alterarVeiculo, buscarPorNome, BuscarPorID, validateVehicle } from '../repository/veiculoRepository.js';
 import { verifyTokenLogin } from '../repository/usuarioRepository.js';
 import { fileURLToPath } from 'url';
 
