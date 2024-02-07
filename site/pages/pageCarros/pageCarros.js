@@ -38,16 +38,34 @@ if (cor == undefined) {
     cor = "#000000"
 }
 
-buttonInput.addEventListener("click", () => insertVehiclhe());
+// Gerar código aleatório
 buttonGerarCodigo.addEventListener("click", () => {
-    let codigoAleatorio = Math.floor(1000 + Math.random() * 9000);
-    codigo = codigoAleatorio
+    codigo = Math.floor(1000 + Math.random() * 9000);
 
     codigoInput.value = codigo
 })
 
-function insertVehiclhe() {
+// Inserir veículo no banco ao clicar em 'salvar'
+// buttonInput.addEventListener("click", () => insertVehicle());
 
+buttonInput.addEventListener("click", () => console.log(`
+modelo: ${modelo}
+marca: ${marca}
+valor: ${valor}
+placa: ${placa}
+anoFab: ${anoFab}
+km: ${km}
+codigo: ${codigo}
+img: ${img}
+cor: ${cor}
+numPortas: ${numPortas}
+classe: ${classe}
+tipo: ${tipo}
+`));
+
+
+
+function insertVehicle() {
     fetch(url, {
         method: "POST",
         headers: {
@@ -71,7 +89,7 @@ function insertVehiclhe() {
         .then(response => {
             if (!response.ok) {
                 response.json().then(data => {
-                    alternateTextError(data.message); //! Deixar vermelho o texto
+                    alternateTextError(data.message); //! Retornar erro em vermelho
                 })
             }
             response.json().then(data => {
@@ -99,6 +117,20 @@ function alternateTextOk(data) {
 
 
 
-// Gerar um número aleatório de 4 dígitos
+let buttonLimpar = document.querySelector('.button-limpar');
 
+buttonLimpar.addEventListener("click", () => clearInputs())
 
+function clearInputs() {
+    modeloInput.value = "";
+    marcaInput.value = "";
+    valorInput.value = "";
+    placaInput.value = "";
+    anoFabInput.value = "";
+    kmInput.value = "";
+    classeInput.value = "";
+    codigoInput.value = "";
+    imgInput.value = "";
+    corInput.value = "";
+    numPortasInput.value = "";
+}
