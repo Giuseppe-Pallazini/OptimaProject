@@ -2,7 +2,7 @@ import multer from 'multer';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import express from 'express';
-import { inserirImagem, removerVeiculo, inserirVeiculo, listarTodosVeículos, alterarVeiculo, buscarPorNome, BuscarPorID, validateVehicle } from '../repository/veiculoRepository.js';
+import { inserirImagem, removerVeiculo, inserirVeiculo, listarTodosVeículos, alterarVeiculo, buscarPorNome, BuscarPorID, validateVehicle, listCodigo } from '../repository/veiculoRepository.js';
 import { verifyTokenLogin } from '../repository/usuarioRepository.js';
 import { fileURLToPath } from 'url';
 
@@ -24,7 +24,7 @@ server.post('/veiculo', (req, resp, next) => verifyTokenLogin(req, resp, next, f
     try {
         const novoVeiculo = req.body;
 
-        if(!novoVeiculo || typeof novoVeiculo !== "object") {
+        if (!novoVeiculo || typeof novoVeiculo !== "object") {
             resp.status(400).json({ erro: 'Formato de entrada inválido.' });
             return;
         }
@@ -33,7 +33,7 @@ server.post('/veiculo', (req, resp, next) => verifyTokenLogin(req, resp, next, f
 
         await inserirVeiculo(novoVeiculo); //- Inserir veículo
 
-        resp.send({message: "Veículo cadastrado com sucesso!"});
+        resp.send({ message: "Veículo cadastrado com sucesso!" });
 
     } catch (err) {
         // console.log(err)
@@ -111,7 +111,7 @@ server.put('/veiculo/:id', (req, resp, next) => verifyTokenLogin(req, resp, next
         if (resposta != 1)
             throw new Error("Veículo não pode ser alterado")
 
-        resp.status(200).send({ message: "Veículo alterado com sucesso."});
+        resp.status(200).send({ message: "Veículo alterado com sucesso." });
 
     } catch (err) {
         resp.status(400).send({
@@ -129,7 +129,7 @@ server.delete('/veiculo/:id', (req, resp, next) => verifyTokenLogin(req, resp, n
         if (resposta != 1)
             throw new Error("Veículo não pode ser removido")
 
-        resp.status(200).send({message: "Veículo removido com sucesso!"})
+        resp.status(200).send({ message: "Veículo removido com sucesso!" })
     } catch (err) {
         resp.status(400).send({
             erro: err.message
@@ -142,18 +142,18 @@ server.get('/veiculo/:id', (req, resp, next) => verifyTokenLogin(req, resp, next
     try {
         const id = Number(req.params.id);
 
-        if(!id) {
+        if (!id) {
             throw new Error("Número não identificado");
         }
-        
+
         const resposta = await BuscarPorID(id);
 
         if (!resposta) {
-                resp.status(400).send({message: 'Veículo não localizado'})
+            resp.status(400).send({ message: 'Veículo não localizado' })
         }
         resp.send(resposta);
     } catch (err) {
-        resp.status(404).send({message: err.message});
+        resp.status(404).send({ message: err.message });
     }
 })
 

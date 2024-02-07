@@ -47,9 +47,6 @@ export async function listarTodosVeículos() {
 }
 
 
-
-
-
 /*Buscar Veiculo*/
 export async function buscarPorNome(nome, marca) {
     const comando =
@@ -107,7 +104,7 @@ export async function removerVeiculo(id) {
 export async function BuscarPorID(id) {
     const comando =
         `SELECT id_veiculo              id,
-               ds_modelo                nome,
+                ds_modelo                nome,
                 ds_marca                marca,
                 vl_valor                valor,
                 ds_placa                placa,
@@ -118,6 +115,18 @@ export async function BuscarPorID(id) {
     FROM        tb_veiculo
     WHERE       id_veiculo     =         ? ` ;
     const [linhas] = await con.query(comando, id);
+    return linhas[0];
+}
+
+
+
+export async function listCodigo(codigo) {
+    const comand = 
+        `SELECT     id_veiculo 	    id
+    FROM            tb_veiculo
+    WHERE 	        nr_codigo =     ?`;
+
+    const [linhas] = await con.query(comand, codigo);
     return linhas[0];
 }
 
@@ -180,3 +189,4 @@ export async function validateVehicle(novoVeiculo) {
     }
 
 }
+
