@@ -5,7 +5,6 @@ export async function inserirVeiculo(veiculo) {
     const comando =
         `INSERT INTO TB_VEICULO (DS_MODELO, DS_MARCA, VL_VALOR, DS_PLACA, DT_ANOFAB, VL_KM, NR_CODIGO, DS_CLASSE, IMG_VEICULO, DS_COR, NR_PORTAS, DS_TIPO)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-
     const [resposta] = await con.query(comando, [veiculo.modelo, veiculo.marca, veiculo.valor, veiculo.placa, veiculo.anoFab, veiculo.km, veiculo.codigo, veiculo.classe, veiculo.img, veiculo.cor, veiculo.numPortas, veiculo.tipo]);
     veiculo.id = resposta.insertId;
     return veiculo;
@@ -17,8 +16,8 @@ export async function inserirVeiculo(veiculo) {
 export async function inserirImagem(imagem, id) {
     const comando =
         `UPDATE tb_veiculo
-	         SET img_veiculo       = ?
-         WHERE id_veiculo = ? `
+             SET img_veiculo =      ?
+         WHERE id_veiculo =         ?`
 
     const [resposta] = await con.query(comando, [imagem, id])
     return resposta.affectedRows;
@@ -31,16 +30,20 @@ export async function inserirImagem(imagem, id) {
 /*listar veiculos */
 export async function listarTodosVeículos() {
     const comando =
-        `select 	id_veiculo          id,
-                ds_modelo               modelo,
-                ds_marca                marca,
-                vl_valor                valor,
-                ds_placa 	 	        placa,
-                dt_anofab               anofab,
-                vl_km      	            km,
-                ds_classe 		        classe,
-                img_veiculo             imagem
-    from        tb_veiculo`
+        `select     id_veiculo      ID,
+                    ds_tipo         Tipo,
+                    ds_modelo       Modelo,
+                    ds_marca        Marca,
+                    vl_valor        Valor,
+                    ds_placa        Placa,
+                    dt_anofab       Ano_Fabricação,
+                    vl_km           Quilometragem,
+                    nr_codigo       Código,
+                    ds_classe       Classe,
+                    img_veiculo     Img,
+                    ds_cor          Cor,
+                    nr_portas       Qtd_Portas
+from    tb_veiculo;`
 
     const [linhas] = await con.query(comando);
     return linhas;
@@ -50,19 +53,22 @@ export async function listarTodosVeículos() {
 /*Buscar Veiculo*/
 export async function buscarPorNome(nome, marca) {
     const comando =
-        `   select 	id_veiculo              id,
-                    ds_modelo               modelo,
-                    ds_marca                marca,
-                    vl_valor                valor,
-                    ds_placa                placa,
-                    dt_anofab               anofab,
-                    vl_km                   km,
-                    ds_classe               classe,
-                    img_veiculo             imagem
-            from tb_veiculo
-            where ds_modelo like            ?
-                  or ds_marca like          ? `
-
+        `select         id_veiculo      ID,
+                    ds_tipo         Tipo,
+                    ds_modelo       Modelo,
+                    ds_marca        Marca,
+                    vl_valor        Valor,
+                    ds_placa        Placa,
+                    dt_anofab       Ano_Fabricação,
+                    vl_km           Quilometragem,
+                    nr_codigo       Código,
+                    ds_classe       Classe,
+                    img_veiculo     Img,
+                    ds_cor          Cor,
+                    nr_portas       Qtd_Portas
+        from tb_veiculo
+    where           ds_modelo like      ?
+    or              ds_marca like       ? `
     const [linhas] = await con.query(comando, [`%${nome}%`, `%${marca}%`]);
     return linhas;
 }
@@ -74,13 +80,13 @@ export async function alterarVeiculo(id, veiculo) {
 
     const comando = `
     update tb_veiculo 
-    set ds_modelo    =      ?,
-     ds_marca        =      ?,
-     vl_valor        =      ?,
-     ds_placa 	 	 =      ?,
-     dt_anofab       =	    ?,
-     vl_km      	 =      ?,
-     ds_classe 		 =      ?
+    set ds_modelo   =       ?,
+     ds_marca       =       ?,
+     vl_valor       =       ?,
+     ds_placa       =       ?,
+     dt_anofab      =       ?,
+     vl_km          =       ?,
+     ds_classe      =      ?
 
     where id_veiculo =      ?`
 
@@ -92,7 +98,7 @@ export async function alterarVeiculo(id, veiculo) {
 /*Remover veiculo */
 export async function removerVeiculo(id) {
     const comando =
-            `delete 
+        `   delete
                 from    tb_veiculo
             where       id_veiculo =    ?`
 
@@ -122,13 +128,13 @@ export async function BuscarPorID(id) {
 
 
 export async function validateCodigoExist(codigo) {
-    if(codigo == undefined) {
+    if (codigo == undefined) {
         return false
     }
-    const comand = 
-        `SELECT     id_veiculo 	    id
+    const comand =
+        `SELECT     id_veiculo          id
     FROM            tb_veiculo
-    WHERE 	        nr_codigo =     ?`;
+    WHERE           nr_codigo =         ?`;
 
     const [linhas] = await con.query(comand, codigo);
     return linhas[0];
@@ -180,6 +186,10 @@ export async function validateVehicle(novoVeiculo) {
     }
     else if (await validateCodigoExist(novoVeiculo.codigo)) {
         detalhesErros.message = "Código já existe";
+        throw error;
+    }
+    else if (novoVeiculo.codigo.length != 4) {
+        detalhesErros.message = "Código precisa haver 4 números";
         throw error;
     }
     else if (!novoVeiculo.classe) {

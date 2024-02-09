@@ -11,7 +11,7 @@ export async function generateToken(id, nome) {
     nome
   };
   const options = {
-    expiresIn: '1h'
+    expiresIn: '2h'
   };
   return jwt.sign(payload, secretKey, options);
 }
@@ -26,18 +26,19 @@ export async function verifyTokenLogin(req, res, next, redirectToLogin) {
   if (!token && redirectToLogin) {
     redirectLogin(res)
   } else if (!token && !redirectToLogin) {
-    res.status(401).send({ message: "Não foi possível completar sua solicitação"})
+    return res.status(401).send({ message: "Não foi possível completar sua solicitação" })
   }
 
   try {
     const decoded = jwt.verify(token, secretKey);
-    next() // Token OK
+    next() //- Token OK
 
   } catch (erro) { //! caso haja o token mas não seja válido
+
     if (redirectToLogin) {
-      redirectLogin(res) 
+      redirectLogin(res)
     } else {
-      res.status(401).send({ message: "Sessão expirada"})
+      res.status(401).send({ message: "Sessão expirada" })
     }
   }
 };

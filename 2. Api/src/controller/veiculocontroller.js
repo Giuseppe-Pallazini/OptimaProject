@@ -24,11 +24,6 @@ server.post('/veiculo', (req, resp, next) => verifyTokenLogin(req, resp, next, f
     try {
         const novoVeiculo = req.body;
 
-        if (!novoVeiculo || typeof novoVeiculo !== "object") {
-            resp.status(400).json({ erro: 'Formato de entrada inválido.' });
-            return;
-        }
-
         await validateVehicle(novoVeiculo) //* Validações para o cadastro de veículo
 
         await inserirVeiculo(novoVeiculo); //- Inserir veículo
@@ -105,9 +100,10 @@ server.put('/veiculo/:id', (req, resp, next) => verifyTokenLogin(req, resp, next
         const { id } = req.params;
         const veiculo = req.body;
 
-        await validateVehicle(veiculo)
+        await validateVehicle(veiculo);
 
         const resposta = await alterarVeiculo(id, veiculo);
+        
         if (resposta != 1)
             throw new Error("Veículo não pode ser alterado")
 

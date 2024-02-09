@@ -1,0 +1,75 @@
+use SistemaOptimaFrei;
+
+select * from tb_veiculo;
+select * from tb_funcionario;
+
+
+truncate table tb_veiculo;
+
+-- Efetuar Login
+insert into tb_funcionario (ds_funcionario,ds_senha)
+	   values ('edgar', MD5('789'));
+
+-- CSU01: Efetuar login
+select 	id_funcionario     id,
+		ds_funcionario     nome,
+        ds_senha           senha
+ from   tb_funcionario
+ where  ds_funcionario     = 'admin'
+	and ds_senha     	   =  'admin';
+
+
+-- CSU02: Cadastro novo veiculo
+insert into tb_veiculo (ds_modelo, ds_marca, vl_valor, ds_placa, dt_anofab, vl_km, nr_codigo, ds_classe)
+						values ('IX-35', 'Hyundai', '64999.99', 'DRK0123', '2021', '90.000', '00000', 'Suv');
+                        
+
+-- CSU2.1: alterar imagem 
+update tb_funcionario
+	set img_veiculo = '/storage/filme/dfasfsdf.jpg'
+where id_veiculo = 1;
+
+
+-- CSU03: Consultar todos os veículos
+select 		id_veiculo 			ID,
+			ds_tipo				Tipo,
+            ds_modelo			Modelo,
+            ds_marca			Marca,
+            vl_valor			Valor,
+            ds_placa			Placa,
+            dt_anofab			Ano_Fabricação,
+            vl_km				Quilometragem,
+            nr_codigo			Código,
+            ds_classe			Classe,
+            img_veiculo			Img,
+            ds_cor				Cor,
+            nr_portas			Qtd_Portas
+from	tb_veiculo;
+;
+
+
+-- CSU04: Remover Veiculo
+delete from tb_veiculo
+	where id_veiculo = 1;
+
+
+-- CSU05: Consultar veiculo por nome ou marca
+select 				id_veiculo      		id,
+		            ds_modelo              	nome,
+		            ds_marca                marca,
+		            vl_valor                valor,
+                    ds_placa 	 	        placa,
+                    dt_anofab               anofab,
+                    vl_km                   km,	
+                    ds_classe               classe,
+                    img_veiculo             imagem
+       from tb_veiculo
+	            where ds_modelo like '%Meriva%'
+                  or ds_marca like '%Undefined%';
+
+
+
+-- CSU06: Consultar se código já esta vinculado a algum veículo
+select id_veiculo 		id
+	from tb_veiculo
+where 	nr_codigo = 1231232131;

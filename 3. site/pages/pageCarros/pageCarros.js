@@ -26,7 +26,7 @@ valorInput.addEventListener("input", () => valor = valorInput.value)
 placaInput.addEventListener("input", () => placa = placaInput.value.trim())
 anoFabInput.addEventListener("input", () => anoFab = anoFabInput.value)
 kmInput.addEventListener("input", () => km = kmInput.value)
-codigoInput.addEventListener("input", () => codigo = Number(codigoInput.value))
+codigoInput.addEventListener("input", () => codigo = codigoInput.value.toString())
 imgInput.addEventListener("input", () => img = imgInput.value)
 corInput.addEventListener("input", () => cor = corInput.value.trim())
 numPortasInput.addEventListener("input", () => numPortas = numPortasInput.value)
@@ -42,7 +42,7 @@ if (cor == undefined) {
 buttonGerarCodigo.addEventListener("click", () => {
     codigo = Math.floor(1000 + Math.random() * 9000);
 
-    codigoInput.value = codigo
+    codigoInput.value = codigo.toString()
 })
 
 // Inserir veículo no banco ao clicar em 'salvar'
