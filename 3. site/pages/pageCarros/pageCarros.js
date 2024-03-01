@@ -1,38 +1,23 @@
-const url = "http://localhost:5000/veiculo";
+const urlVehicles = "http://localhost:5000/veiculo";
+const urlMarcas = "https://parallelum.com.br/fipe/api/v1/carros/marcas"
 
 let modelo, marca, valor, placa, anoFab, km, classe, img, cor, numPortas, codigo, tipo;
 
 
 let buttonInput = document.querySelector('.button-salvar');
 let buttonGerarCodigo = document.querySelector('.codigo_aleatorio')
-let modeloInput = document.querySelector('.modelo');
-let marcaInput = document.querySelector('.marca');
-let valorInput = document.querySelector('.valor');
-let placaInput = document.querySelector('.placa');
-let anoFabInput = document.querySelector('.anoFab');
-let kmInput = document.querySelector('.km');
-let classeInput = document.querySelector('.classe')
-let codigoInput = document.querySelector('.codigo');
-let imgInput = document.querySelector('.img');
-let corInput = document.querySelector('.cor');
-let numPortasInput = document.querySelector('.numPortas');
-let tipoInput = document.querySelector('#lista-conteudos');
-
-
-
-modeloInput.addEventListener("input", () => modelo = modeloInput.value.trim())
-marcaInput.addEventListener("input", () => marca = marcaInput.value.trim())
-valorInput.addEventListener("input", () => valor = valorInput.value)
-placaInput.addEventListener("input", () => placa = placaInput.value.trim())
-anoFabInput.addEventListener("input", () => anoFab = anoFabInput.value)
-kmInput.addEventListener("input", () => km = kmInput.value)
-codigoInput.addEventListener("input", () => codigo = codigoInput.value.toString())
-imgInput.addEventListener("input", () => img = imgInput.value)
-corInput.addEventListener("input", () => cor = corInput.value.trim())
-numPortasInput.addEventListener("input", () => numPortas = numPortasInput.value)
-classeInput.addEventListener("input", () => classe = classeInput.value.trim())
-tipoInput.addEventListener("change", () => tipo = tipoInput.value.trim())
-
+let modeloInput = document.querySelector('.modelo').addEventListener("input", () => modelo = modeloInput.value.trim());
+let marcaInput = document.getElementById('id_marca');
+let valorInput = document.querySelector('.valor').addEventListener("input", () => valor = valorInput.value);
+let placaInput = document.querySelector('.placa').addEventListener("input", () => placa = placaInput.value.trim());
+let anoFabInput = document.querySelector('.anoFab').addEventListener("input", () => anoFab = anoFabInput.value);
+let kmInput = document.querySelector('.km').addEventListener("input", () => km = kmInput.value);
+let classeInput = document.querySelector('.classe').addEventListener("input", () => classe = classeInput.value.trim());
+let codigoInput = document.querySelector('.codigo').addEventListener("input", () => codigo = codigoInput.value.toString());
+let imgInput = document.querySelector('.img').addEventListener("input", () => img = imgInput.value);
+let corInput = document.querySelector('.cor').addEventListener("input", () => cor = corInput.value.trim());
+let numPortasInput = document.querySelector('.numPortas').addEventListener("input", () => numPortas = numPortasInput.value);
+let tipoInput = document.querySelector('#lista-conteudos').addEventListener("change", () => tipo = tipoInput.value.trim());
 
 if (cor == undefined) {
     cor = "#000000"
@@ -64,9 +49,23 @@ buttonInput.addEventListener("click", () => insertVehicle());
 // `));
 
 
+async function searchBrands() {
+    await fetch(urlMarcas , {
+        method: "GET"
+    })
+    .then((result) => result.json())
+    .then((brands) => brands.map((item) => {
+        let option = document.createElement("option");
+        option.innerText = item.nome
+
+        marcaInput.appendChild(option)
+    }))
+}
+searchBrands()
+
 
 function insertVehicle() {
-    fetch(url, {
+    fetch(urlVehicles, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
