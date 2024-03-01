@@ -1,7 +1,3 @@
-/* input:focus {
-    border: none;
-} */
-
 .section-cars {
     display: flex;
     flex-direction: column;
@@ -10,16 +6,16 @@
 
     .informacao {
         margin: 5.5em 0 0 4.625em;
-        
+
         p {
             color: #8837C7;
             font-weight: 700;
         }
-        
+
         h1 {
             font-weight: 600;
         }
-    
+
     }
 
     .cadastro-veiculo {
@@ -38,7 +34,7 @@
             }
 
             .inputs {
-                display: flex;  
+                display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
@@ -63,23 +59,75 @@
                     color: #111 !important;
                 }
 
-                .input_cadastro:focus, .input_cadastro::placeholder{
+                .input_cadastro:focus,
+                .input_cadastro::placeholder {
                     outline: none;
                     color: #acacac;
                 }
 
-                input, select {
+                input,
+                select {
                     width: 120px;
                     height: 30px;
                 }
-            
+
+                .div_select {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .select_marca {
+                        background-color: #F5F6FA;
+                        border: none;
+                        outline: none;
+                        margin: 0 10px 0 0 ;
+                    }
+                    
+                    
+                }
             }
 
-            .button-salvar, .button-limpar {
+            .button-salvar,
+            .button-limpar {
                 cursor: pointer;
             }
         }
     }
 }
 
+.spinner {
+    width: 25px;
+    height: 25px;
+    display: grid;
+    border: 2px solid #0000;
+    border-radius: 50%;
+    border-color: #000 #0000;
+    animation: spinner-e04l1k 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+    content: "";
+    grid-area: 1/1;
+    margin: 2.2px;
+    border: inherit;
+    border-radius: 50%;
+}
+
+.spinner::before {
+    border-color: #8837C7 #0000;
+    animation: inherit;
+    animation-duration: 0.5s;
+    animation-direction: reverse;
+}
+
+.spinner::after {
+    margin: 5.5px;
+}
+
+@keyframes spinner-e04l1k {
+    100% {
+        transform: rotate(1turn);
+    }
+}
 

@@ -11,17 +11,17 @@ const server = Router()
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-server.use(express.static(path.join(__dirname, '../../../site/pages')));
+server.use(express.static(path.join(__dirname, '../../../3.site/pages')));
 
 // Landing Page
 server.get('/', (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/pages/landingPage/landingPage.html'));
+    resp.sendFile(path.join(__dirname, '../../../3.site/pages/landingPage/landingPage.html'));
 });
 
 
 // Home
 server.get('/home', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/pages/home/home.html'));
+    resp.sendFile(path.join(__dirname, '../../../3.site/pages/home/home.html'));
 });
 
 
@@ -32,19 +32,19 @@ server.get('/home', (req, resp, next) => verifyTokenLogin(req, resp, next, true)
 
 // PageCarros
 server.get('/pageCarros', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/pages/pageCarros/pageCarros.html'));
+    resp.sendFile(path.join(__dirname, '../../../3.site/pages/pageCarros/pageCarros.html'));
 });
 
 
 // Login
 server.get('/login', (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/pages/login/login.html'));
+    resp.sendFile(path.join(__dirname, '../../../3.site/pages/login/login.html'));
 });
 
 
 // Clientes
 server.get('/clientes', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
-    resp.sendFile(path.join(__dirname, '../../../site/pages/clientes/clientes.html'));
+    resp.sendFile(path.join(__dirname, '../../../3.site/pages/clientes/clientes.html'));
 });
 
 export default server;

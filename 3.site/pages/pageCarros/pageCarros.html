@@ -52,16 +52,17 @@
                 <h1> Novo Veículo</h1>
                 <p class="error"> Error </p>
                 <div class="inputs">
-                        <select class="tipo" id="lista-conteudos">
-                            <option>Tipo</option>
-                            <option>Carro</option>
-                            <option>Moto</option>
-                            <option>Caminhão</option>
-                        </select>
-                    <input type="text" placeholder="modelo" class="modelo input_cadastro">
-                    <select name="marca" id="id_marca">
-                        
+                    <select class="tipo" id="lista-conteudos">
+                        <option>Tipo</option>
+                        <option>Carro</option>
+                        <option>Moto</option>
+                        <option>Caminhão</option>
                     </select>
+                    <input type="text" placeholder="modelo" class="modelo input_cadastro">
+                    <div class="div_select">
+                        <select class="select_marca" name="marca" id="id_marca">
+                        </select>
+                    </div>
                     <input type="number" placeholder="Valor" class="valor input_cadastro">
                     <input type="text" placeholder="Placa" maxlength="7" class="placa input_cadastro">
                     <input type="number" placeholder="Ano de fabricação" maxlength="4" class="anoFab input_cadastro">
@@ -99,6 +100,7 @@
                 <div></div>
             </div>
         </div>
+
     </section>
 
 </body>

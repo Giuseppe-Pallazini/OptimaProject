@@ -4,7 +4,6 @@ select * from tb_veiculo;
 select * from tb_funcionario;
 
 
-truncate table tb_veiculo;
 
 -- Efetuar Login
 insert into tb_funcionario (ds_funcionario,ds_senha)
@@ -25,7 +24,7 @@ insert into tb_veiculo (ds_modelo, ds_marca, vl_valor, ds_placa, dt_anofab, vl_k
                         
 
 -- CSU2.1: alterar imagem 
-update tb_funcionario
+update tb_veiculo
 	set img_veiculo = '/storage/filme/dfasfsdf.jpg'
 where id_veiculo = 1;
 
@@ -73,3 +72,4 @@ select 				id_veiculo      		id,
 select id_veiculo 		id
 	from tb_veiculo
 where 	nr_codigo = 1231232131;
+

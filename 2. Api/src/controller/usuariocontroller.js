@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 server.use(cookieParser())
-server.use(express.static(path.join(__dirname, '../../../site')));
+server.use(express.static(path.join(__dirname, '../../../3.site')));
 
 
 //! logar no sistema

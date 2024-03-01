@@ -1,16 +1,12 @@
 create database SistemaOptimaFrei;
 use SistemaOptimaFrei;
 
-
 create table tb_funcionario(
     id_funcionario    int primary key auto_increment,
     ds_funcionario    varchar(800),
     ds_senha          varchar(800),
     ds_lastToken	  varchar(800)
 );
-
-alter table tb_veiculo
-modify column nr_codigo varchar(200);
 
 create table tb_veiculo(
     id_veiculo  		int primary key auto_increment,
@@ -20,7 +16,7 @@ create table tb_veiculo(
     ds_placa 	 	    varchar(7),
     dt_anofab        	int,
     vl_km      	        decimal(15,2),
-    nr_codigo           int,
+    nr_codigo           varchar(200),
     ds_classe 		    varchar(15),
     img_veiculo        	varchar(300),
     ds_cor				varchar(800),
