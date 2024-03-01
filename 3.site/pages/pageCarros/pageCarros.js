@@ -72,8 +72,7 @@ function finishLoading(spinner, selectMarca) {
     selectMarca.disabled = false
 }
 
-
-function insertVehicle() {
+function loadInputsValues() {
     tipoInput.addEventListener("change", () => tipo = tipoInput.value);
     marcaInput.addEventListener("change", () => marca    = marcaInput.value);
     numPortasInput.addEventListener("input", () => numPortas = numPortasInput.value);
@@ -86,6 +85,12 @@ function insertVehicle() {
     valorInput.addEventListener("input", () => valor = valorInput.value);
     modeloInput.addEventListener("input", () => modelo = modeloInput.value.trim());
     codigoInput.addEventListener("input", () => codigo = codigoInput.value.trim());
+}
+loadInputsValues()
+
+
+function insertVehicle() {
+    loadInputsValues()
     
     try {
         fetch(urlVehicles, {
