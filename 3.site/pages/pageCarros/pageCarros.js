@@ -39,7 +39,7 @@ async function searchBrands() {
     let divMarca = document.querySelector('.div_select');
     let selectMarca = document.querySelector('.select_marca')
     let spinner = document.createElement("div");
-    
+
 
     startLoading(divMarca, spinner, selectMarca);
 
@@ -67,7 +67,7 @@ function startLoading(divMarca, spinner, selectMarca) {
     selectMarca.disabled = true
 }
 
-function finishLoading(spinner,selectMarca) {
+function finishLoading(spinner, selectMarca) {
     spinner.style.display = 'none';
     selectMarca.disabled = false
 }
@@ -75,7 +75,7 @@ function finishLoading(spinner,selectMarca) {
 
 function insertVehicle() {
     tipoInput.addEventListener("change", () => tipo = tipoInput.value);
-    marcaInput.addEventListener("change", () => marcaInput = marcaInput.value);
+    marcaInput.addEventListener("change", () => marca    = marcaInput.value);
     numPortasInput.addEventListener("input", () => numPortas = numPortasInput.value);
     corInput.addEventListener("input", () => cor = corInput.value.trim());
     imgInput.addEventListener("input", () => img = imgInput.value);
@@ -85,7 +85,8 @@ function insertVehicle() {
     placaInput.addEventListener("input", () => placa = placaInput.value.trim());
     valorInput.addEventListener("input", () => valor = valorInput.value);
     modeloInput.addEventListener("input", () => modelo = modeloInput.value.trim());
-
+    codigoInput.addEventListener("input", () => codigo = codigoInput.value.trim());
+    
     try {
         fetch(urlVehicles, {
             method: "POST",
@@ -96,7 +97,7 @@ function insertVehicle() {
                 "modelo": modelo,
                 "marca": marca,
                 "valor": valor,
-                "placa": placa  ,
+                "placa": placa,
                 "anoFab": anoFab,
                 "km": km,
                 "codigo": codigo,
@@ -108,17 +109,17 @@ function insertVehicle() {
             })
         })
             .then(response => {
-                // if (!response.ok) {
+                if (!response.ok) {
+                    response.json().then(data => {
+                            alternateTextError(data.message); //! Retornar erro em vermelho
+                        })
                     
-                // }
-                response.json().then(data => {
-                    alternateTextOk(data.message) //* Retornar sucesso em verde
-                })
-            })
-            .catch(response => {
-                response.json().then(data => {
-                    alternateTextError(data.message); //! Retornar erro em vermelho
-                })
+                }
+                else {
+                    response.json().then(data => {
+                        alternateTextOk(data.message) //* Retornar sucesso em verde
+                    })
+                }
             })
     } catch (error) {
     }
@@ -134,7 +135,7 @@ function alternateTextError(error) {
 
 function alternateTextOk(data) {
     let doc = document.querySelector(".error");
-    doc.style.color = "#2dcc1f  ";
+    doc.style.color = "#2dcc1f";
     doc.style.opacity = "1"
     doc.innerHTML = "*" + data;
 
