@@ -30,19 +30,19 @@ export async function inserirImagem(imagem, id) {
 /*listar veiculos */
 export async function listarTodosVeículos() {
     const comando =
-        `select     id_veiculo      ID,
-                    ds_tipo         Tipo,
-                    ds_modelo       Modelo,
-                    ds_marca        Marca,
-                    vl_valor        Valor,
-                    ds_placa        Placa,
-                    dt_anofab       Ano_Fabricação,
-                    vl_km           Quilometragem,
-                    nr_codigo       Código,
-                    ds_classe       Classe,
-                    img_veiculo     Img,
-                    ds_cor          Cor,
-                    nr_portas       Qtd_Portas
+        `select     id_veiculo      id,
+                    ds_tipo         tipo,
+                    ds_modelo       modelo,
+                    ds_marca        marca,
+                    vl_valor        valor,
+                    ds_placa        placa,
+                    dt_anofab       anoFabricacao,
+                    vl_km           km,
+                    nr_codigo       codigo,
+                    ds_classe       classe,
+                    img_veiculo     imagem,
+                    ds_cor          cor,
+                    nr_portas       qtdPortas
 from    tb_veiculo;`
 
     const [linhas] = await con.query(comando);
@@ -52,23 +52,23 @@ from    tb_veiculo;`
 
 /*Buscar Veiculo*/
 export async function buscarPorNome(nome, marca) {
-    const comando =
-        `select         id_veiculo      ID,
-                    ds_tipo         Tipo,
-                    ds_modelo       Modelo,
-                    ds_marca        Marca,
-                    vl_valor        Valor,
-                    ds_placa        Placa,
-                    dt_anofab       Ano_Fabricação,
-                    vl_km           Quilometragem,
-                    nr_codigo       Código,
-                    ds_classe       Classe,
-                    img_veiculo     Img,
-                    ds_cor          Cor,
-                    nr_portas       Qtd_Portas
-        from tb_veiculo
-    where           ds_modelo like      ?
-    or              ds_marca like       ? `
+    const comando =`
+        select     id_veiculo       id,
+                    ds_tipo         tipo,
+                    ds_modelo       modelo,
+                    ds_marca        marca,
+                    vl_valor        valor,
+                    ds_placa        placa,
+                    dt_anofab       anoFabricacao,
+                    vl_km           km,
+                    nr_codigo       codigo,
+                    ds_classe       classe,
+                    img_veiculo     imagem,
+                    ds_cor          cor,
+                    nr_portas       qtdPortas
+            from tb_veiculo
+        where       ds_modelo like          ?
+        or          ds_marca like           ?`
     const [linhas] = await con.query(comando, [`%${nome}%`, `%${marca}%`]);
     return linhas;
 }
@@ -86,7 +86,7 @@ export async function alterarVeiculo(id, veiculo) {
      ds_placa       =       ?,
      dt_anofab      =       ?,
      vl_km          =       ?,
-     ds_classe      =      ?
+     ds_classe      =       ?
 
     where id_veiculo =      ?`
 

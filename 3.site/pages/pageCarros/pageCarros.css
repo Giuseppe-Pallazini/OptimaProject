@@ -25,21 +25,28 @@
         background: #FFF;
         box-shadow: 0px 0px 8px 0px rgba(122, 122, 122, 0.25);
 
-        .especificacoes-veiculo {
-            margin: 2.8125em 0 0 2.25em;
+        .especificacoes_veiculo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-            .error {
-                opacity: 0;
-                font-size: 14px;
+            .especificacoes_veiculo_cabecalho {
+                width: 100%;
+
+                .error {
+                    opacity: 0;
+                    font-size: 14px;
+                }
             }
 
             .inputs {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
                 align-items: center;
+                justify-content: space-between;
                 flex-wrap: wrap;
-                width: 300px;
+                width: 90%;
                 margin: 1em 0 0 0;
                 height: 300px;
 
@@ -53,7 +60,27 @@
                     outline: none;
                 }
 
+                .codigo_div {
+                    .button_codigo_aleatorio {
+                        font-family: 'inter', sans-serif;
+                        font-weight: 700;
+                        background-color: #8837C7;
+                        color: #F5F6FA;
+                        outline: 0;
+                        border: 0;
+                        height: 30px;
+                    }
+                }
+
                 .input_cadastro {
+                    margin: 0 20px;
+                    background-color: #F5F6FA;
+                    border: none;
+                    color: #111 !important;
+                    height: 30px;
+                }
+
+                .input_cadastro_codigo {
                     background-color: #F5F6FA;
                     border: none;
                     color: #111 !important;
@@ -80,10 +107,7 @@
                         background-color: #F5F6FA;
                         border: none;
                         outline: none;
-                        margin: 0 10px 0 0 ;
                     }
-                    
-                    
                 }
             }
 
@@ -131,3 +155,15 @@
     }
 }
 
+
+@media (max-width: 1350px) {
+    .section-cars {
+        .cadastro-veiculo {
+            .especificacoes_veiculo {
+                .inputs {
+                    width: 900px;
+                }
+            }
+        }
+    }
+}

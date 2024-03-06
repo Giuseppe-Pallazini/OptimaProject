@@ -6,7 +6,7 @@ let modelo, marca, valor, placa, anoFab, km, classe, img, cor, numPortas, codigo
 
 
 let buttonInput = document.querySelector(".button-salvar");
-let buttonGerarCodigo = document.querySelector(".codigo_aleatorio");
+let buttonGerarCodigo = document.querySelector(".button_codigo_aleatorio");
 
 let codigoInput = document.querySelector(".codigo");
 let modeloInput = document.querySelector(".modelo");
@@ -147,7 +147,6 @@ function alternateTextOk(data) {
     buttonInput.style.cursor = "not-allowed";
     buttonInput.setAttribute("disabled", "disabled");
 }
-
 
 
 let buttonLimpar = document.querySelector(".button-limpar");

@@ -31,7 +31,6 @@ server.post('/veiculo', (req, resp, next) => verifyTokenLogin(req, resp, next, f
         resp.send({ message: "Veículo cadastrado com sucesso!" });
 
     } catch (err) {
-        // console.log(err)
         resp.status(err.detalhes.status).send({
             message: err.detalhes.message
         });
