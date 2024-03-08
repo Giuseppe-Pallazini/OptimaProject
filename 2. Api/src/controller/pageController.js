@@ -25,14 +25,15 @@ server.get('/home', (req, resp, next) => verifyTokenLogin(req, resp, next, true)
 });
 
 
-// server.get('home/home.js', verifyTokenLogin, (req,resp) => {
-//     resp.sendFile(path.join(__dirname, '../../../site/pages/login/login.html'));
-// })
-
-
 // PageCarros
 server.get('/pageCarros', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
     resp.sendFile(path.join(__dirname, '../../../3.site/pages/pageCarros/pageCarros.html'));
+});
+
+
+// PageCarros2
+server.get('/pageCarros2', (req, resp, next) => verifyTokenLogin(req, resp, next, true), (req, resp) => {
+    resp.sendFile(path.join(__dirname, '../../../3.site/pages/pageCarros2/pageCarros.html'));
 });
 
 

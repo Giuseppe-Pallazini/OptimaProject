@@ -20,25 +20,27 @@ export async function generateToken(id, nome) {
 
 //! middleware para o token (Redirecionar para o Login)
 export async function verifyTokenLogin(req, res, next, redirectToLogin) {
-
   const token = req.cookies.Authorization;
 
   if (!token && redirectToLogin) {
-    redirectLogin(res)
-  } else if (!token && !redirectToLogin) {
-    return res.status(401).send({ message: "Não foi possível completar sua solicitação" })
+    return redirectLogin(res);
+  }
+
+  else if (!token && !redirectToLogin) {
+    return res.status(401).send({ message: "Não foi possível completar sua solicitação" });
   }
 
   try {
     const decoded = jwt.verify(token, secretKey);
-    next() //- Token OK
+    next() //* Token OK
 
   } catch (erro) { //! caso haja o token mas não seja válido
 
     if (redirectToLogin) {
-      redirectLogin(res)
-    } else {
-      res.status(401).send({ message: "Sessão expirada" })
+      redirectLogin(res);
+    }
+    else {
+      res.status(401).send({ message: "Sessão expirada" });
     }
   }
 };

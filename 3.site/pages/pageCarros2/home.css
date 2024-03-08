@@ -1,0 +1,225 @@
+body {
+    display: flex;
+    flex-direction: row;
+
+    background-color: #F5F6FA;
+}
+
+.section_menu_welcome {
+    border: 1px solid green;
+}
+
+.hamburguer {
+    display: none;
+    border: none;
+    background: none;
+    border-top: 3px solid #F5F6FA;
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    padding: 0;
+    margin-top: 2em;
+}
+
+.hamburguer::before,
+.hamburguer::after {
+    content: " ";
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #F5F6FA;
+    margin-top: 5px;
+    position: relative;
+    transition: .3s;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #111111;
+    color: #F5F6FA;
+
+    width: 216px;
+    height: 100vh;
+
+    .logo_optima_white {
+        width: 170px;
+        height: auto;
+
+        margin: 5em 0 4em 0;
+    }
+
+    .nav-list {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .home-purple {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #8837C7;
+            width: 100%;
+            color: #F5F6FA;
+            padding: 1em;
+
+            img {
+                width: 20px;
+                height: auto;
+            }
+
+            p {
+                font-family: 'inter', sans-serif;
+                font-size: 12px;
+            }
+        }
+
+        .home-black {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #111111;
+            width: 100%;
+            color: #F5F6FA;
+            padding: 1em;
+
+            img {
+                width: 20px;
+                height: auto;
+            }
+
+            p {
+                text-align: center;
+                font-family: 'inter', sans-serif;
+                font-size: 12px;
+                margin: 0 1.1em 0 0;
+            }
+            
+            .p-clientes {
+                margin: 0;
+            }
+        }
+
+    }
+
+}
+
+
+
+
+
+@media (max-width: 1350px) {
+    .menu {
+        .logo_optima_white {
+            width: 150px;
+        }
+    }
+}
+
+@media (max-width: 1110px) {
+    .menu {
+        .logo_optima_white {
+            width: 130px;
+        }
+    }
+
+    .section-logo {
+        .logo-optima-black {
+            width: 200px;
+        }
+    }
+}
+
+@media (max-width: 545px) {
+    .menu {
+        .logo_optima_white {
+            width: 120px;
+        }
+    }
+}
+
+/* Removendo Menú lateral */
+@media (max-width: 430px) {
+    .hamburguer {
+        display: block;
+        z-index: 2;
+    }
+
+    .menu {
+        width: 70px;
+        .logo_optima_white {
+            display: none;
+        }
+    }
+
+
+
+    .nav-list {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #111111;
+        clip-path: circle(100px at 0% -14%);
+        transition: 1s ease-in-out;
+        z-index: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        pointer-events: none;
+
+        ul {
+            margin-top: 10em;
+
+            a, div {
+                opacity: 0;
+            }
+        }
+
+
+        
+    }
+
+    .nav-list ul li:nth-child(1) a {
+        transition: .5s .6s;
+    }
+    .nav-list ul li:nth-child(2) div {
+        transition: .5s .8s;
+    }
+    .nav-list ul li:nth-child(3) a {
+        transition: .5s 1s;
+    }
+
+
+    .menu.active .nav-list {
+        clip-path: circle(1500px at 10% 10%);
+        pointer-events: all;
+    }
+
+    .menu.active .nav-list ul li a, .menu.menu.active .nav-list ul li div {
+        opacity: 1;
+    }
+
+    .menu.menu.active .hamburguer {
+        position: fixed;
+        border-top-color: transparent;
+    }
+
+    .menu.menu.active .hamburguer::before {
+        transform: rotate(135deg);
+    }
+    .menu.menu.active .hamburguer::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+}
