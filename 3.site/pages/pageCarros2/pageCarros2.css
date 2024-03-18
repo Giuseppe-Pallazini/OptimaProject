@@ -1,8 +1,13 @@
-.section-cars {
+body {
+    display: flex;
+    justify-content: row;
+}
+
+/* .section-cars {
     display: flex;
     flex-direction: column;
     width: calc(100vw - 216px);
-    font-family: 'inter', sans-serif;
+    font-family: 'inter', sans-serif; */
 
     .informacao {
         margin: 2em 0 0 3em;
@@ -19,10 +24,10 @@
     }
 
     .cadastro-veiculo {
-        margin: 2em 0 0 3em;
-        width: calc(100vw - 370px);
-        height: 493px;
-        background: #FFF;
+        display: flex;
+        align-items: center;
+
+        background-color: #F5F6FA !important;
         box-shadow: 0px 0px 8px 0px rgba(122, 122, 122, 0.25);
 
         .especificacoes_veiculo {
@@ -119,7 +124,7 @@
             }
         }
     }
-}
+/* } */
 
 .spinner {
     width: 25px;

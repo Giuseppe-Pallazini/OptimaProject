@@ -1,6 +1,7 @@
 .section-cars {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: calc(100vw - 216px);
     font-family: 'inter', sans-serif;
 
@@ -19,9 +20,9 @@
     }
 
     .cadastro-veiculo {
-        margin: 2em 0 0 3em;
+        margin: 2em 0 0 0;
         width: calc(100vw - 370px);
-        height: 493px;
+        /* height: 493px;    */
         background: #FFF;
         box-shadow: 0px 0px 8px 0px rgba(122, 122, 122, 0.25);
 
@@ -75,7 +76,7 @@
                 }
 
                 .input_cadastro {
-                    margin: 0 20px;
+                    margin: 0 0 1em 20px;
                     background-color: #F5F6FA;
                     border: none;
                     color: #111 !important;
@@ -98,6 +99,7 @@
                 select {
                     width: 120px;
                     height: 30px;
+
                 }
 
                 .div_select {
@@ -158,7 +160,14 @@
 }
 
 
-@media (max-width: 1350px) {
+@media (max-width: 730px) {
+    .section-cars {
+
+    }
+}
+
+
+/* @media (max-width: 1350px) {
     .section-cars {
         .cadastro-veiculo {
             .especificacoes_veiculo {
@@ -168,4 +177,4 @@
             }
         }
     }
-}
+} */
